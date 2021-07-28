@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>
+        Xave Admin
+    </title>
+
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
+
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="{{ url_for('admin.AdminDashboard') }}" class="active"><span class="las la-igloo"></span><span>Dashboard</span></a>
+                </li>
+                <li><a href="{{ url_for('admin.studentDetail') }}"><span class="las la-users"></span><span>Student Management</span></a>
+                </li>
+                <li><a href="{{ url_for('admin.lecturerDashboard') }}"><span class="las la-users"></span><span>Lecturer Management</span></a>
+                </li>
+                
+                    <li><a href="{{ url_for('admin.bulkMail') }}"><span class="las la-clone"></span><span>Bulk Mail</span></a>
+                </li>
+
+                <li><a href="{{ url_for('admin.adminControl') }}"><span class="las la-bullseye"></span><span>Administration Control</span></a>
+                    </li>
+                    <li><a href="{{ url_for('admin.log') }}"><span class="las la-history"></span><span>Activities Log</span></a></li>
+                    <li><a href=""><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="">
+                    <span class="las la-bars">
+    
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</div>
+    </body>
+  
+    </html>

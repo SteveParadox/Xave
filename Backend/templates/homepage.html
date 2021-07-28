@@ -1,0 +1,68 @@
+{% block content %}
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<style>
+.container {
+  background-image: url('/static/matric.jpg');
+  display: block;
+  float: left;
+  height: 500px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-blend-mode: screen;
+}
+
+
+</style>
+<!-- Canvas -->
+<canvas class="orb-canvas"></canvas>
+<!-- Overlay -->
+
+{% if current_user.is_authenticated %} <h3>{{current_user.name}}</h3>
+<a href="{{ url_for('student.logoutStudent') }}">
+Logout
+</a>
+{% else %}
+<a href="{{ url_for('student.loginPortal') }}">
+    Login To Portal
+</a>
+{% endif %}
+
+<div class="overlay container">
+  <!-- Overlay inner wrapper -->
+<div class="">
+  <div class="overlay__inner">
+    <!-- Title -->
+    <h1 class="overlay__title">
+      Welcome To The University Of
+      <span class="text-gradient">Port Harcourt</span> 
+    </h1>
+    <!-- Description -->
+    <p class="overlay__description">
+      
+    </p>
+    <!-- Buttons -->
+    <div class="overlay__btns">
+
+
+      <button class="overlay__btn overlay__btn--colors">
+        <span>Randomise Colors</span>
+        <span class="overlay__btn-emoji">🎨</span>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<script type="module" src="{{ url_for('static', filename='style.js') }}"></script>
+
+{% endblock content %}

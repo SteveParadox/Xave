@@ -1,0 +1,25 @@
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+<div class="card">
+        <div class="card-img">
+            <img src="https://dl.dropbox.com/s/u3j25jx9tkaruap/Webp.net-resizeimage.jpg?raw=1">
+        </div>
+        <div class="desc">
+            <h6 class="primary-text">{{ current_user.name }}</h6>
+            <h6 class="secondary-text">{{ current_user.matriculation_number }}</h6>
+        </div>
+        <a href="{{ url_for('student.dashboard') }}" style="position: unset;"><button class="primary-text">View Dashboard</button></a>
+        <div class="details">
+            <div class="rating">
+                <h6 class="primary-text"> {{current_user.admission_year}} </h6>
+                <h6 class="secondary-text"> Admission Year </h6>
+            </div>
+            <div class="activity">
+                <h6 class="primary-text"> {{current_user.programme_type}} </h6>
+                <h6 class="secondary-text"> Programme Type </h6>
+            </div>
+        </div>
+</div>
+
+{% endblock content %}
+	

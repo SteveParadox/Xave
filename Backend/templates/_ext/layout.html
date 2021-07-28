@@ -1,0 +1,138 @@
+
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+
+
+<div class="dark-light">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+    </svg>
+</div>
+<div class="app">
+    <div class="header">
+        <div class="menu-circle"></div>
+        <div class="header-menu">
+            
+            <a class="menu-link notify" href="#">Discover</a>
+            <a class="menu-link " href="#">School Calender</a>
+        </div>
+   
+        <div class="header-profile">
+            
+            
+            <img class="profile-img"
+                src="https://images.unsplash.com/photo-1600353068440-6361ef3a86e8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                alt="">
+				{{current_user.name}}
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="left-side">
+            <div class="side-wrapper">
+                <div class="side-title">Student</div>
+                <div class="side-menu">
+                    <a href="{{ url_for('student.dashboard') }}" >
+                        <svg viewBox="0 0 512 512">
+                            <g xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                <path
+                                    d="M0 0h128v128H0zm0 0M192 0h128v128H192zm0 0M384 0h128v128H384zm0 0M0 192h128v128H0zm0 0"
+                                    data-original="#bfc9d1" />
+                            </g>
+                            <path xmlns="http://www.w3.org/2000/svg" d="M192 192h128v128H192zm0 0" fill="currentColor"
+                                data-original="#82b1ff" />
+                            <path xmlns="http://www.w3.org/2000/svg"
+                                d="M384 192h128v128H384zm0 0M0 384h128v128H0zm0 0M192 384h128v128H192zm0 0M384 384h128v128H384zm0 0"
+                                fill="currentColor" data-original="#bfc9d1" />
+                        </svg>
+                        Profile
+                    </a>
+
+                    
+                    <a href="{{ url_for('student.logoutStudent') }}">
+                        <svg viewBox="0 0 488.932 488.932" fill="currentColor">
+                            <path
+                                d="M243.158 61.361v-57.6c0-3.2 4-4.9 6.7-2.9l118.4 87c2 1.5 2 4.4 0 5.9l-118.4 87c-2.7 2-6.7.2-6.7-2.9v-57.5c-87.8 1.4-158.1 76-152.1 165.4 5.1 76.8 67.7 139.1 144.5 144 81.4 5.2 150.6-53 163-129.9 2.3-14.3 14.7-24.7 29.2-24.7 17.9 0 31.8 15.9 29 33.5-17.4 109.7-118.5 192-235.7 178.9-98-11-176.7-89.4-187.8-187.4-14.7-128.2 84.9-237.4 209.9-238.8z" />
+                        </svg>
+
+                        Logout
+                    </a>
+                </div>
+            </div>
+            <div class="side-wrapper">
+                <div class="side-title">Activities</div>
+                <div class="side-menu">
+                    <a href="{{ url_for('student.bioData') }}">
+                        Bio Data
+                    </a>
+                  
+                    <a href="{{ url_for('student.result') }}" >
+                        Results
+                        <span class="notification-number updates">3</span>
+                    </a>
+                    <a href="{{ url_for('student.feeStatus') }}">
+                        Fees
+                    </a>
+                    <a href="{{ url_for('student.registerCourses') }}">
+                        Courses
+                    </a>
+                    <a href="{{ url_for('student.studentMail') }}">
+                        Mails/Notifications
+                        <span class="notification-number updates">20</span>
+                    </a>
+                    <a href="{{ url_for('student.updateProfile') }}">
+                        Update Profile
+                    </a>
+                    <a href="#">
+                        Online Quiz
+                    </a>
+
+                </div>
+            </div>
+            <div class="side-wrapper">
+                <div class="side-title">Resource Links</div>
+                <div class="side-menu">
+
+                    <a href="#">
+                        <svg viewBox="0 0 511.441 511.441" fill="currentColor">
+                            <path d="M255.721 347.484L90.22 266.751v106.57l165.51 73.503 165.509-73.503V266.742z" />
+                            <path
+                                d="M511.441 189.361L255.721 64.617 0 189.361l255.721 124.744 195.522-95.378v111.032h30V204.092z" />
+                        </svg>
+                        Tutorials
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 512 512" fill="currentColor">
+                            <path
+                                d="M352 0H64C28.704 0 0 28.704 0 64v320a16.02 16.02 0 009.216 14.496A16.232 16.232 0 0016 400c3.68 0 7.328-1.248 10.24-3.712L117.792 320H352c35.296 0 64-28.704 64-64V64c0-35.296-28.704-64-64-64z" />
+                            <path
+                                d="M464 128h-16v128c0 52.928-43.072 96-96 96H129.376L128 353.152V400c0 26.464 21.536 48 48 48h234.368l75.616 60.512A16.158 16.158 0 00496 512c2.336 0 4.704-.544 6.944-1.6A15.968 15.968 0 00512 496V176c0-26.464-21.536-48-48-48z" />
+                        </svg>
+                        Social Forum
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="app"></div>
+        <div class="main-container">
+            
+            <div class="content-wrapper">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block content %}{% endblock %}
+                
+            </div>
+        </div>
+    </div>
+    <div class="overlay-app"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/views/dashboard.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>

@@ -1,0 +1,56 @@
+{% extends '_ext/layout.html' %}
+{% block content %}
+
+<style>
+    input {
+        width: 80%;
+        outline: none;
+        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 10px;
+        padding-left: 40px;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+        
+    }
+</style>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset style="border: none;">
+        <div class="content-button  open">
+            <span>{{ form.email.label() }}</span>
+            {{form.email()}}
+           
+        </div>
+
+        <div class="content-button  open">
+            <span>{{ form.phone_number.label() }}</span>
+            {{form.phone_number()}}
+            
+        </div>
+
+        <div class="content-button open">
+            <span>{{ form.marital_status.label() }}</span>
+            {{form.marital_status()}}
+            
+        </div>
+        <div class="content-button  open">
+            <span>{{ form.address1.label() }}</span>
+            {{form.address1()}}
+        
+        </div>
+        <div class="content-button  open">
+            <span>{{ form.religion.label() }}</span>
+            {{form.religion()}}
+        
+        </div>
+        </fieldset>
+
+        {{ form.submit }}
+        </form>
+
+
+{% endblock content %}
