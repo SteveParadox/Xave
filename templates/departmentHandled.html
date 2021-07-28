@@ -1,0 +1,28 @@
+{% extends "_ext/lecturerLayout.html"%}
+{% block content %}
+
+
+
+<div class="main-header">
+    
+    <div class="header-menu">
+        <a class="main-header-link is-active "  href="{{ url_for('lecturer.departmentHandled') }}">Departments</a>
+        <a class="main-header-link" href="{{ url_for('lecturer.courseHandled') }}">Courses</a>
+		<a class="main-header-link  " href="{{ url_for('lecturer.levelHandled') }}">Levels</a>
+      
+
+    </div>
+    
+</div>
+{% for crs in dept %}
+<div class="content-button  open"> 
+<a  href="{{ url_for('lecturer.getStudent', dept=crs.name) }}">
+        
+    <span>{{ crs.name }}</span>
+   </a>
+
+</div>
+
+{% endfor %}
+
+{% endblock content %}

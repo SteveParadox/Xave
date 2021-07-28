@@ -1,0 +1,23 @@
+{% extends "_ext/layout.html"%}
+{% block content %}
+<div class="main-header">
+    
+    <div class="header-menu">
+        <a class="main-header-link" href="{{ url_for('student.registerCourses') }}">Register Courses</a>
+        <a class="main-header-link is-active" href="{{ url_for('student.viewRegisteredCourses') }}">View Registered Courses</a>
+        <a class="main-header-link" href="#">Course Materials</a>
+
+    </div>
+    
+</div>
+
+{% for crs in f %}
+<div class="content-button  open"> 
+    <span>{{ crs.name}}</span>
+   
+
+</div>
+
+{% endfor %}
+
+{% endblock content %}
