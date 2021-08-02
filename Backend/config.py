@@ -106,6 +106,6 @@ class Config:
                     else:
                         pass
                     SQLALCHEMY_TRACK_MODIFICATIONS = False
-                    SQLALCHEMY_DATABASE_URI = ""
+                    SQLALCHEMY_DATABASE_URI = "postgres://xtxivwdedrdqiq:dca0e349351bad9191732318455e178bd99eec6326c351c09a4d70b475833b32@ec2-174-129-32-240.compute-1.amazonaws.com:5432/dagkfphn1hgj9d"
         #CORS_HEADERS = 'Access-Control-Allow-Origin'
 
