@@ -35,3 +35,4 @@ ndg-httpsclient==0.5.1
 PyJWT==1.6.4
 python-dotenv==0.8.2
 six==1.11.0
+flask_profiler==1.8.1
