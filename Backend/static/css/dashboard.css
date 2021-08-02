@@ -52,6 +52,11 @@ body {
   width: 100%;
   height: 100vh;
 }
+
+.fa {
+	font-size: 17px;
+	margin-right: .5rem;
+}
 @media screen and (max-width: 480px) {
   body {
     padding: 0.8em;
@@ -249,10 +254,15 @@ body.light-mode:before {
 .notification + svg {
   margin-left: 22px;
 }
+
+
 @media screen and (max-width: 945px) {
-  .notification + svg {
-    display: none;
-  }
+
+
+.fa {
+	margin-right: 2.5rem;
+    margin-left: -.6rem;
+}
 }
 .profile-img {
   width: 32px;
@@ -289,8 +299,17 @@ body.light-mode:before {
 }
 @media screen and (max-width: 945px) {
   .left-side {
-    display: none;
+	flex-basis: 63px;
+	width: 20%;
+	
   }
+  .side-title {
+	  display:none;
+  }
+  
+ .fa {
+	 font-size: 30px;
+ }
 }
 .side-wrapper + .side-wrapper {
   margin-top: 20px;
@@ -795,4 +814,45 @@ body.light-mode:before {
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-bg);
   border-radius: 10px;
+}
+
+
+
+.sidebar {
+
+    z-index: 100;
+    transition: width 300ms;
+}
+
+#nav-toggle:checked + .sidebar {
+    width: 70px;
+}
+
+
+#nav-toggle:checked + .sidebar .sidebar-brand,
+#nav-toggle:checked + .sidebar li a  {
+    padding-left: 1rem;
+    text-align: center;
+} 
+
+#nav-toggle:checked + .sidebar li a  {
+    padding-left: 0rem;
+} 
+
+
+
+#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+#nav-toggle:checked + .sidebar li a span:last-child
+ {
+     display: none;
+
+}
+
+#nav-toggle:checked ~ .main-content {
+    margin-left: 70px;
+}
+
+#nav-toggle:checked ~ .main-content header {
+    width: calc(100% - 70px);
+    left: 70px;
 }
