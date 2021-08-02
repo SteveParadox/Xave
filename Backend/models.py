@@ -3,26 +3,33 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_login import UserMixin
 from marshmallow_sqlalchemy import ModelSchema
 import uuid 
-from flask import session
+from flask import session, redirect, url_for
 
 from Backend import db, login_manager, app
 
 
-'''@login_manager.user_loader
+@login_manager.user_loader
 def load_user(user_id):
-  if session['account_type'] == 'Admin':
-      return Admin.query.get(int(user_id))
-  elif session['account_type'] == 'Lecturer':
-      return Lecturer.query.get(int(user_id))
-  else:
-      return Student.query.get(int(user_id))'''
+    try:
+        if session['account_type'] == 'Admin':
+            return Admin.query.get(int(user_id))
+        elif session['account_type'] == 'Lecturer':
+            return Lecturer.query.get(int(user_id))
+        else:
+            student = Student.query.filter_by(email=user_id).first()
+            return Student.query.get(student.id)
+        
+    except:
+        session.pop('account_type', None)
+        return redirect(url_for('student.loginPortal'))
+'''
       
       
 @login_manager.user_loader
 def load_user(user_id):
     student = Student.query.filter_by(email=user_id).first()
     return Student.query.get(student.id)
-
+'''
 class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     portal_toggle = db.Column(db.Boolean, default=False)
@@ -57,9 +64,25 @@ class Admin(db.Model, UserMixin):
                 db.session.commit()
             except IntegrityError:
                 db.session.rollback()
+               
 
+class Art(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    faculties = db.relationship('Faculty', backref='artfaculty', lazy=True)
+    
+class Sciences(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    faculties = db.relationship('Faculty', backref='sciencefaculty', lazy=True)
+
+class Socialsciences(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    faculties = db.relationship('Faculty', backref='ssciencefaculty', lazy=True)
+    
 class Faculty(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    art_id = db.Column(db.Integer, db.ForeignKey('art.id'))
+    sciences_id = db.Column(db.Integer, db.ForeignKey('sciences.id'))
+    socialsciences_id = db.Column(db.Integer, db.ForeignKey('socialsciences.id'))
     name = db.Column(db.String(100), nullable=False)
     departments = db.relationship('Department', backref='child', lazy=True)
 
@@ -140,19 +163,27 @@ class Lecturer(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     unique_id = db.Column(db.String(100), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    level = db.Column(db.Integer, nullable=False)
     date_of_birth = db.Column(db.String(100), nullable=False)
     gender = db.Column(db.String(20), nullable=False)
     address = db.Column(db.String(100), nullable=False)
+    position = db.Column(db.String(200), nullable=False)
+    photo = db.Column(db.String(200), nullable=False)
     phone_no = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     school_email = db.Column(db.String(120))
     password = db.Column(db.String(160), nullable=False)
     faculty = db.Column(db.String(100), nullable=False)
     department = db.Column(db.String(100), nullable=False)
-    course_handled = db.Column(db.JSON, nullable=False)
+    photo = db.Column(db.String(20), nullable=False, default='default.jpg')
+    course_handled = db.Column(db.JSON)
     is_verified = db.Column(db.Boolean, default=False)
-    is_admin = db.Column(db.Boolean,  default=False)
+    one = db.Column(db.Boolean,  default=False)
+    two = db.Column(db.Boolean,  default=False)
+    three = db.Column(db.Boolean,  default=False)
+    four = db.Column(db.Boolean,  default=False)
+    five = db.Column(db.Boolean,  default=False)
+    six = db.Column(db.Boolean,  default=False)
+    seven = db.Column(db.Boolean,  default=False)
     logged_in = db.Column(db.Integer, default=0)
     cv = db.Column(db.String(100), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False, default=datetime.now)
@@ -163,8 +194,11 @@ class Lecturer(db.Model, UserMixin):
 class Courses(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    department_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
-    lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.id'), nullable=False)
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
+    lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.id'))
+    sciences_id = db.Column(db.Integer, db.ForeignKey('sciences.id'))
+    socialsciences_id = db.Column(db.Integer, db.ForeignKey('socialsciences.id'))
+    art_id = db.Column(db.Integer, db.ForeignKey('art.id'))
     level = db.Column(db.Integer, default=0)
     semester = db.Column(db.Integer, default=0)
     course_registered = db.relationship('Registered', backref='picked', lazy=True)
