@@ -1,6 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextAreaField, IntegerField, StringField, PasswordField, SubmitField, BooleanField, DateField,TextAreaField
+from wtforms import SubmitField, TextAreaField, IntegerField, StringField, PasswordField, SubmitField,RadioField, BooleanField, DateField,TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+from flask_wtf.file import FileAllowed
+from wtforms import FileField
+
 
 class StudentRegistrationForm(FlaskForm):    
     name = StringField('Name',
@@ -22,6 +25,7 @@ class StudentRegistrationForm(FlaskForm):
                            
     address1 = StringField('Address',
                            validators=[DataRequired()])
+    photo = FileField('profile', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     address2 = StringField('Matriculation Number',
                            validators=[DataRequired()])
     marital_status = StringField('Marital Status',
@@ -107,8 +111,37 @@ class LecturerRegistrationForm(FlaskForm):
     department = StringField('Department',
                            validators=[DataRequired()])
                            
+                           
+    photo = FileField('profile', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    document = FileField('Document', validators=[FileAllowed(['pdf', 'txt', 'docx'])])
+    email = StringField('Email',
+                        validators=[DataRequired(), Email('Invalid Email')])
+    level = StringField('Level',
+                           validators=[DataRequired()])
+    password = PasswordField('Password',
+                             validators=[DataRequired()])
     
-    courses = StringField('Course Handled',
+    position = StringField('Position',
+                             validators=[DataRequired()])
+    one = BooleanField('One')
+    two = BooleanField('Two')
+    three = BooleanField('Three')
+    four = BooleanField('Four')
+    five = BooleanField('Five')
+    six = BooleanField('Six')
+    seven = BooleanField('Seven')
+    confirm_password = PasswordField('Confirm password',
+                                     validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
+    submit = SubmitField('Register?')
+
+class AddAdminForm(FlaskForm):
+    name = StringField('Name',
+                           validators=[DataRequired()])
+    gender = StringField('Gender',
+                           validators=[DataRequired()])
+                           
+    
+    position = StringField('Position',
                            validators=[DataRequired()])
     email = StringField('Email',
                         validators=[DataRequired(), Email('Invalid Email')])
@@ -119,7 +152,6 @@ class LecturerRegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm password',
                                      validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Register?')
-
 
 class LoginAdminForm(FlaskForm):
     email = StringField('Email Address',
@@ -133,7 +165,6 @@ class StudentPasswordForm(FlaskForm):
                              validators=[DataRequired()])
     submit = SubmitField('Change Password')
 
-
 class MailForm(FlaskForm):
     title = StringField('Title',
                         validators=[DataRequired()])
@@ -144,12 +175,21 @@ class MailForm(FlaskForm):
 class AddCourseForm(FlaskForm):
     name = StringField('Name',
                         validators=[DataRequired()])
-    level = IntegerField('Level',
-                        validators=[DataRequired()])
     faculty = StringField('Faculty',
                         validators=[DataRequired()])
-    lecturer = StringField('Lecturer',
+                        
+    department = StringField('Department')
+    lecturer = StringField('Lecturer')
+    semester = RadioField('Semester', choices= [("one","First Semester"),("Two", 'Second Semester')],
                         validators=[DataRequired()])
-    semester = IntegerField('Semester',
+    levels = RadioField('Level', choices= [("one","Level One"),("two", 'Level Two'),("three", "Level Three"),("four", "Level Four"),("five", "Level Five"),("six", "Level Six"),("seven", "Level Seven")],
                         validators=[DataRequired()])
     submit = SubmitField('Add')
+    
+
+
+class LevelForm(FlaskForm):
+    levels = RadioField('Level', choices= [("one","Level One"),("Two", 'Level Two'),("three", "Level Three"),("four", "Level Four"),("five", "Level Five"),("six", "Level Six"),("seven", "Level Seven")],
+                        validators=[DataRequired()])
+   
+    submit = SubmitField('View')

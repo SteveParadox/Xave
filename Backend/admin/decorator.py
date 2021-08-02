@@ -4,10 +4,11 @@ from flask import jsonify
 import random
 from flask import *
 from Backend import *
-from Backend.models import Admin
+from Backend.models import Admin, Lecturer
 from flask_cors import cross_origin
 from functools import wraps
 import jwt
+from flask_login import login_required, current_user
 
 
 
@@ -44,8 +45,31 @@ def check_confirmed(func):
 
     return decorated_function
 
+def admiN(func):
+    @login_required
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        admin = Admin.query.filter_by(unique_id=current_user.unique_id).first()
+        if not admin:
+            return jsonify({
+                "message": 'Admin access is required for this operation'
+            })
+        return func(*args, **kwargs)
 
+    return decorated_function
 
+def lectureR(func):
+    @login_required
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        lecturer = Lecturer.query.filter_by(unique_id=current_user.unique_id).first()
+        if not lecturer:
+            return jsonify({
+                "message": 'Lecturer access is required for this operation'
+            })
+        return func(*args, **kwargs)
+
+    return decorated_function
 
 def token_required(f):
     @wraps(f)
