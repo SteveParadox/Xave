@@ -1,7 +1,7 @@
 from flask import *
 from flask_login import login_required
 from Backend.models import *
-from Backend import db, bcrypt
+from Backend import *
 from flask_cors import cross_origin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from Backend.config import Config
@@ -27,3 +27,8 @@ def viewResult(student_id):
     return render_template('', record=record)
 
 
+@records.route('/clear/db')
+def clear():
+    #db.drop_all(app=create_app())
+    db.create_all(app=create_app())
+    return redirect(url_for('student.home'))
