@@ -63,6 +63,15 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
+class LoginLecturerForm(FlaskForm):
+    email = StringField('Email Address',
+                        validators=[DataRequired(), Email()])
+    password = PasswordField('Password',
+                             validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
+
 class UpdateDetailForm(FlaskForm):
     address1 = StringField('Address')
     marital_status = StringField('Marital Status')

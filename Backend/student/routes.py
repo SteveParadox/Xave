@@ -8,6 +8,7 @@ from flask_cors import cross_origin
 from Backend.ext import token_required
 from Backend.student.decorator import check_confirmed
 from Backend.student.form import *
+from Backend.student.decorator import *
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 student = Blueprint('student', __name__)
@@ -24,17 +25,10 @@ def loginPortal():
         if student and bcrypt.check_password_hash(student.password, form.password.data):
             login_user(student, remember=form.remember.data)
             next_page = request.args.get('next')
+            session['account_type'] = 'Student'
             return redirect(next_page) if next_page else redirect(url_for('student.myProfile'))
-        else:
-            pass
-        if not student:
-            lecturer = Lecturer.query.filter_by(email=form.email.data).first()
-            if lecturer and bcrypt.check_password_hash(lecturer.password, form.password.data):
-                login_user(lecturer, remember=form.remember.data)
-                next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for(''))
-            else:
-                pass
+            
+  
         else:
             redirect(url_for('student.loginPortal'))
     return render_template('login.html', title="Login to Portal", form=form)
@@ -42,11 +36,27 @@ def loginPortal():
 
 @student.route('/')
 def home():
-     return render_template('homepage.html')
+
+    return render_template('homepage.html')
+
+@student.route('/logout/select')
+def selectLogout():
+    if current_user.is_authenticated:
+        name = Student.query.filter_by(unique_id=current_user.unique_id).first()
+        if name:
+            return redirect(url_for('student.logoutStudent'))
+        elif not name:
+            name = Lecturer.query.filter_by(unique_id=current_user.unique_id).first()
+            if name:
+                return redirect(url_for('lecturer.logoutLecturer'))
+            elif not name:
+                name = Lecturer.query.filter_by(unique_id=current_user.unique_id).first()
+                return redirect(url_for('admin.logoutAdmin'))
+    return redirect(url_for('student.home'))
 
 @student.route('/test/profile')
 @login_required
-#@check_confirmed
+@studenT
 def myProfile():
     #detail = Student.query.filter_by(unique_id=unique_id).first()
     return render_template('profile.html')
@@ -54,7 +64,7 @@ def myProfile():
 
 @student.route('/other')
 @login_required
-#@check_confirmed
+
 def _():
     #detail = Student.query.filter_by(unique_id=unique_id).first()
     return render_template('other.html')
@@ -62,14 +72,22 @@ def _():
 
 @student.route('/student/mail')
 @login_required
-#@check_confirmed
+@studenT
 def studentMail():
     message = Message.query.all()
     return render_template('message.html', message=message)
 
+@student.route('/student/mail/<int:msg_id>')
+@login_required
+@studenT
+def messageDetail(msg_id):
+    msg = Message.query.filter_by(id=msg_id).first()
+
+    return render_template('msgDetailStudent.html', msg=msg)
+
 @student.route('/update/profile', methods=['GET','POST'])
 @login_required
-#@check_confirmed
+@studenT
 def updateProfile():
     form = UpdateDetailForm()
     detail = Student.query.filter_by(unique_id=current_user.unique_id).first()
@@ -92,7 +110,7 @@ def updateProfile():
 
 @student.route('/student/biodata')
 @login_required
-#@check_confirmed
+@studenT
 def bioData():
     detail = Student.query.filter_by(unique_id=current_user.unique_id).first()
     
@@ -101,7 +119,7 @@ def bioData():
 
 @student.route('/student/dashboard')
 @login_required
-#@check_confirmed
+@studenT
 def dashboard():
     #detail = Student.query.filter_by(unique_id=unique_id).first()
     return render_template('dashboard.html')
@@ -109,7 +127,7 @@ def dashboard():
 
 @student.route('/student/fees')
 @login_required
-#@check_confirmed
+@studenT
 def feeStatus():
     #detail = Student.query.filter_by(unique_id=unique_id).first()
     return render_template('fees.html')
@@ -117,22 +135,23 @@ def feeStatus():
 
 @student.route('/student/result')
 @login_required
-#@check_confirmed
+@studenT
 def result():
-    #detail = Student.query.filter_by(unique_id=unique_id).first()
-    return render_template('result.html')
+    res =Result.query.filter_by(student_id=current_user.id).all()
+    return render_template('result.html', res=res)
 
 
 
 @student.route('/register/courses', methods=['GET','POST'])
 @login_required
-#@check_confirmed
+@studenT
 def registerCourses():
     dept = Department.query.filter_by(name=current_user.department).first()
-    courses = Courses.query.filter_by(level=current_user.level).filter_by(subject=dept).all()
-    for i in courses:
-        register = Registered.query.filter_by(course_id=i.id).filter_by(register=False).all()
-        if register:
+    if current_user.level == 1:
+        pass
+    else:
+        courses = Courses.query.filter_by(level=current_user.level).filter_by(subject=dept).all()
+        for i in courses:
             form = RegisterCoursesForm()
             if form.validate_on_submit():
                 for i in courses:
@@ -141,14 +160,13 @@ def registerCourses():
                     db.session.add(register)
                     db.session.commit()
                 return redirect(url_for('student.registerCourses'))
-        else:
-            form=""
+        
     return render_template('courses.html', courses=courses, dept=dept, form=form)
 
 
 @student.route('/view/registered/courses')
 @login_required
-#@check_confirmed
+@studenT
 def viewRegisteredCourses():
     f= []
     dept = Department.query.filter_by(name=current_user.department).first()
@@ -159,10 +177,13 @@ def viewRegisteredCourses():
             f.append(i)
     return render_template('registeredCourses.html', courses=courses, dept=dept, f=f)
 
+
+
 @student.route('/failed/courses')
 @login_required
-#@check_confirmed
+@studenT
 def failedCourses():
+    
 
     return render_template('')
 
@@ -171,14 +192,16 @@ def failedCourses():
 
 @student.route('/logout')
 @login_required
+@studenT
 def logoutStudent():
     logout_user()
+    session.pop('account_type', None)
     return redirect(url_for('student.loginPortal'))
 
 
 @student.route('/student/profile/<string:unique_id>', methods=['GET'])
 @login_required
-#@check_confirmed
+@studenT
 def studentProfile(unique_id):
     datalist = []
     detail = Student.query.filter_by(unique_id=unique_id).first()
