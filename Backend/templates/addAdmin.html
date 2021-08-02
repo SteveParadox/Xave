@@ -1,0 +1,125 @@
+{% extends "_ext/adminLayout.html"%}
+{% block content %}
+
+
+<style>
+    .vas {
+        background: none;
+        border-radius: 10px;
+        color: #cb0cd8;
+        font-size: .8rem;
+        padding: .5rem 1rem;
+        border: 1px solid var(--main--color);
+        font-weight: 600;
+        box-shadow: 4px 2px 24px 1px;
+        border: none;
+    }
+</style>
+
+<div class="recent-grid">
+    <div class="projects">
+        <div class="card" style=" margin-top: 1rem;">
+            <div class="card-header">
+                <h3>
+                   Admin Registration
+                </h3>
+
+
+            </div>
+
+            <div class="card-body">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <fieldset style="border: none;">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        {{form.name()}}
+                                    </td>
+
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Email
+                                    </td>
+                                    <td>
+                                        {{form.email(type="email")}}
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Position
+                                    </td>
+                                    <td>
+                                        {{form.position()}}
+                                    </td>
+
+                                </tr>
+
+                                
+                                <tr>
+                                    <td>
+                                        Gender
+                                    </td>
+                                    <td>
+                                        {{form.gender()}}
+                                    </td>
+
+                                </tr>
+                  
+                                
+                                <tr>
+                                    <td>
+                                        Password
+                                    </td>
+                                    <td>
+                                        {{form.password}}
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Confirm Password
+                                    </td>
+                                    <td>
+                                        {{form.confirm_password}}
+                                    </td>
+
+                                </tr>
+
+                     
+                               
+                    </fieldset>
+                    <td></td>
+
+                    <td>{{form.submit(class="vas")}}</td>
+
+                    </tbody>
+
+                    </table>
+
+                </form>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

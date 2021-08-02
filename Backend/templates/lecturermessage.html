@@ -1,4 +1,4 @@
-{% extends "_ext/layout.html"%}
+{% extends "_ext/lecturerLayout.html"%}
 {% block content %}
 
 <style>
@@ -18,12 +18,20 @@
     }
 </style>
 
+<div class="main-header">
+    
+    <div class="header-menu">
+        <a class="main-header-link is-active" href="{{ url_for('lecturer.lecturerMail') }}">My Mails</a>
+        <a class="main-header-link " href="{{ url_for('lecturer.bulkStudentMail') }}">Send Mail To Students</a>
+        
 
+    </div>
+    
+</div>
 
 
 School Mail
 {% for msg in message %}
-
 
 <table width="100%"  style="color: darkgrey;">
    <div class="content-section">
@@ -34,14 +42,16 @@ School Mail
                     <small>Re: {{msg.from_}}</small>
                 </td>
                 <td style="    width: 54%;">
-                    <a href="{{ url_for('student.messageDetail', msg_id=msg.id) }}" ><span style="font-size: 13px;
-    color: white; ">{{ msg.title }}</span></a>
+                  <a href="{{ url_for('lecturer.messageDetail', msg_id=msg.id) }}" >  <span style="font-size: 13px;
+    color: white;">{{ msg.title }}</span>
+				  	</a>
                 </td>
 				<td>
                     <span style="font-size:13px;">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
                 </td>
 
             </tr>
+		
 			</tbody>
 			</div>
 			

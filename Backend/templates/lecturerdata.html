@@ -1,0 +1,162 @@
+{% extends "_ext/adminLayout.html"%}
+{% block content %}
+
+<style>
+    .vas {
+        background: none;
+        border-radius: 10px;
+        color: #cb0cd8;
+        font-size: .8rem; 
+        padding: .5rem 1rem; 
+        border: 1px solid var(--main--color);
+        font-weight: 600;
+	box-shadow: 4px 2px 24px 1px;
+    	border: none;
+    }
+</style>
+
+<div class="recent-grid" >
+    <div class="projects">
+        <div class="card" style=" margin-top: 1rem;">
+            <div class="card-header ">
+                <h3>
+                    Lecturer Details
+                </h3>
+
+               
+            </div>
+
+            <div class="card-body">
+                <table width="100%">
+                    <thead>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                {{detail.name}}
+                            </td>
+                            <td>
+                                <button class="vas">Active</button>
+                                
+                                
+                            </td>
+                            
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Email <Address></Address>
+                            </td>
+                            <td>
+                                {{detail.email}}
+                            </td>
+                           
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Phone Number
+                            </td>
+                            <td>
+                                {{detail.phone_no}}
+                            </td>
+                            
+                        </tr>
+
+                        
+                        <tr>
+                            <td>
+                                Date Of Birth
+                            </td>
+                            <td>
+                                {{detail.date_of_birth}}
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                              Gender
+                            </td>
+                            <td>
+                                {{detail.gender}}
+                            </td>
+                        
+                        </tr>
+                        <tr>
+                            <td>
+                                Marital Status
+                            </td>
+                            <td>
+                               Married
+                            </td>
+                        
+                        </tr>
+
+                        <tr>
+                            <td>
+                               Nationality
+                            </td>
+                            <td>
+                               Nigeria
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>
+                               {{detail.address}}
+                            </td>
+                           
+                        </tr>
+                 
+                   
+                       
+                        <tr>
+                            <td>
+                                Faculty
+                            </td>
+                            <td>
+                                {{detail.faculty}}
+                            </td>
+                        
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Department
+                            </td>
+                            <td>
+                                {{detail.department}}
+                            </td>
+                        
+                        </tr>
+
+                       
+
+                        <tr>
+                            <td>
+                                Position
+                            </td>
+                            <td>
+                                {{detail.position}}
+                            </td>
+                        
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+      
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

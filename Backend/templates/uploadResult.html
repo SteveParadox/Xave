@@ -8,14 +8,18 @@
                                         {{form.semester.label()}}
                                     
                                         {{form.semester()}}
+										
+										
+										
 										<br>
-                                    {% for i in courses %}
-									<br>
-                                       {{i.name}} {{form.grade.label()}}
-                                  
+										
+										{% for i in courses%}
+										{{i.name}}
+										
+                                        {{form.grade.label()}}
+                                    
                                         {{form.grade()}}
-										<br>
-										{% endfor %}
+                                    {% endfor %}
 										
 
 </fieldset>

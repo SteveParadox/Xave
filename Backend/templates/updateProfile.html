@@ -20,36 +20,54 @@
 <form method="POST" action="">
     {{ form.hidden_tag() }}
     <fieldset style="border: none;">
-        <div class="content-button  open">
+        
+		<div class="content-section">
+    
+     <ul>
+      <li class="adobe-product">
+       <div class="products">
             <span>{{ form.email.label() }}</span>
+			</div>
             {{form.email()}}
            
-        </div>
+       
+		</li>
 
-        <div class="content-button  open">
+        <li class="adobe-product">
+       <div class="products">
             <span>{{ form.phone_number.label() }}</span>
+			</div>
             {{form.phone_number()}}
-            
-        </div>
+            </li>
+        
 
-        <div class="content-button open">
+       <li class="adobe-product">
+       <div class="products">
             <span>{{ form.marital_status.label() }}</span>
+			</div>
             {{form.marital_status()}}
             
-        </div>
-        <div class="content-button  open">
+        </li>
+		
+        <li class="adobe-product">
+       <div class="products">
             <span>{{ form.address1.label() }}</span>
+			</div>
             {{form.address1()}}
         
-        </div>
-        <div class="content-button  open">
+       </li>
+	   
+         <li class="adobe-product">
+       <div class="products">
             <span>{{ form.religion.label() }}</span>
+			</div>
             {{form.religion()}}
         
-        </div>
+        </li>
         </fieldset>
-
-        {{ form.submit }}
+<div class="button-wrapper">
+        {{ form.submit() }}
+		</div>
         </form>
 
 

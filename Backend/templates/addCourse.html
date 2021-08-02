@@ -1,3 +1,4 @@
+
 {% block content %}
 
 <form method="POST" action="">
@@ -20,14 +21,13 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        {{form.level.label()}}
+                                        {{form.levels.label()}}
                                     </td>
                                     <td>
-                                        {{form.level()}}
+                                        {{form.levels()}}
                                     </td>
 
                                 </tr>
-								
 								<tr>
                                     <td>
                                         {{form.semester.label()}}
@@ -38,12 +38,23 @@
 
                                 </tr>
 								
+								
+								
 								<tr>
                                     <td>
                                         {{form.faculty.label()}}
                                     </td>
                                     <td>
                                         {{form.faculty()}}
+                                    </td>
+
+                                </tr>
+								<tr>
+                                    <td>
+                                        {{form.department.label()}}
+                                    </td>
+                                    <td>
+                                        {{form.department()}}
                                     </td>
 
                                 </tr>

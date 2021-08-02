@@ -1,6 +1,24 @@
 {% extends '_ext/layout.html' %}
 {% block content %}
-
-
+ <div class="content-section">
+    
+     <ul>
+	 {% for result in res %}
+      <li class="adobe-product">
+       <div class="products">
+        
+        {{result.course}}
+       </div>
+       <span class="status">
+        <span class="status-circle green"></span>
+        {{result.semester}}</span>
+       <div class="button-wrapper">
+        <button class="content-button status-button open">{{result.grade}}</button>
+       
+       </div>
+      </li>
+	  {% endfor %}
+	  </ul>
+	  </div>
 
 {% endblock content %}

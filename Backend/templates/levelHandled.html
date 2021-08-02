@@ -13,13 +13,64 @@
     </div>
     
 </div>
-{% for crs in g %}
+{% if lecturer.one == True %}
 <div class="content-button  open"> 
-    <span>{{ crs.level}}</span>
+    <span>Level 100</span>
    
 
 </div>
+{% else%}
+{% endif %}
 
-{% endfor %}
+{% if lecturer.two == True %}
+<div class="content-button  open"> 
+    <span>Level 200</span>
+   
+
+</div>
+{% else%}
+{% endif %}
+{% if lecturer.three == True %}
+<div class="content-button  open"> 
+    <span>Level 300</span>
+   
+
+</div>
+{% else%}
+{% endif %}
+{% if lecturer.four == True %}
+<div class="content-button  open"> 
+    <span>Level 400</span>
+   
+
+</div>
+{% else%}
+{% endif %}
+{% if lecturer.five == True %}
+<div class="content-button  open"> 
+    <span>Level 500</span>
+   
+
+</div>
+{% else%}
+{% endif %}
+{% if lecturer.six == True %}
+<div class="content-button  open"> 
+    <span>Level 600</span>
+   
+
+</div>
+{% else%}
+{% endif %}
+{% if lecturer.seven == True %}
+<div class="content-button  open"> 
+    <span>Level 700</span>
+   
+
+</div>
+{% else%}
+{% endif %}
+
+
 
 {% endblock content %}

@@ -11,25 +11,46 @@
     </div>
     
 </div>
+
+<div class="content-button  open" style="margin-top: 2rem; visibility: hidden;"> 
+   
+   </div>
+   
+   
 {% if form != ""%}
-{% for course in courses  %}
+
 	
-    <div class="content-button  open">
-        <span>{{ course.name }}</span>
+    <div class="content-section">
+	<ul >
+	{% for course in courses  %}
+      <li class="adobe-product">
+       <div class="products">
+        {{ course.name }}
+		</div>
 		
-		<form method="POST" action="">
+		<div class="button-wrapper" >
+		
+        <form method="POST" action="" >
                     {{ form.hidden_tag() }}
-        {{ form.registered}}
+        {{ form.registered()}}
     
     </div>
+	</li>
  
     
     {% endfor %}
-     {{ form.submit}}
+	</ul>
+	</div>
+     
+        {{ form.submit(class="content-button", style="width: 80%;") }}
+		
 	 </form>
+       
+       
+		
 	 {% else %}
-	 <div class="content-button  open">
-	 <p>Already registered courses</p>
+	 <div class="content-button  open" style="margin-top: 2rem;">
+	 
 	 </div>
 	   {% endif %}
 {% endblock content %}

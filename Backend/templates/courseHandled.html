@@ -12,7 +12,11 @@
     </div>
     
 </div>
-{% for crs in g %}
+
+{% if current_user.one == True %}
+<br>
+Level One
+{% for crs in course1 %}
 <div class="content-button  open"> 
     <span>{{ crs.name }}</span>
    
@@ -20,5 +24,88 @@
 </div>
 
 {% endfor %}
+{%endif%}
 
+
+{% if current_user.two == True %}
+<br>
+Level Two
+{% for crs in course2 %}
+<div class="content-button  open"> 
+    <span>{{ crs.name }}</span>
+   
+
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+{% if current_user.three == True %}
+<br>
+Level Three
+{% for crs in course3 %}
+<div class="content-button  open"> 
+    <span>{{ crs.name }}</span>
+   
+
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+{% if current_user.four == True %}
+<br>
+Level Four
+{% for crs in course4 %}
+<div class="content-button  open"> 
+    <span>{{ crs.name }}</span>
+   
+
+</div>
+
+{% endfor %}
+{% endif %}
+
+{% if current_user.five == True %}
+<br>
+Level five
+{% for crs in course5 %}
+<div class="content-button  open"> 
+    <span>{{ crs.name }}</span>
+   
+
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+{% if current_user.six == True %}
+<br>
+Level Six
+{% for crs in course6 %}
+<div class="content-button  open"> 
+    <span>{{ crs.name }}</span>
+   
+
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+{% if current_user.seven == True %}
+<br>
+Level Seven
+{% for crs in course7 %}
+<div class="content-button  open"> 
+    <span>{{ crs.name }}</span>
+   
+
+</div>
+
+{% endfor %}
+{% endif %}
 {% endblock content %}

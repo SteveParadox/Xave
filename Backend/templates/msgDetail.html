@@ -1,0 +1,44 @@
+{% extends "_ext/lecturerLayout.html"%}
+{% block content %}
+
+<style>
+    input {
+        width: 80%;
+        outline: none;
+        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 10px;
+        padding-left: 40px;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+
+    }
+</style>
+
+
+
+
+
+
+
+<table width="100%"  style="color: darkgrey;">
+   <div class="content-section">
+        
+		
+           <small>Re: {{msg.from_}}</small> <span style="font-size:13px;">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
+                    <h3 style="font-size:13px;">{{ msg.mail }}</h3>
+               
+                    
+            
+			</div>
+			
+			
+
+{% endblock content %}
+
+
+
+

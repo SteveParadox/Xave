@@ -2,6 +2,36 @@
 {% block content %}
 
 
+<style>
+    .fox {
+        width: 5rem;
+        outline: none;
+        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 10px;
+        padding-left: 40px;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+		margin-top : 1rem;
+    }
+</style>
+<form method="POST" action="">
+                    {{ form.hidden_tag() }}
+					<div class="content-section">
+    
+     <ul style="display: contents;">
+      <li class="adobe-product">
+       <div class="products">
+					{{form.levels}}
+					</div>
+					
+					</li></ul>
+					</div>
+					{{form.submit(class="fox")}}
+					</form>
      {% for crs in student %}
 <div class="content-button  open"> 
 <a  href="{{ url_for('lecturer.uploadResult', student=crs.name, dept=crs.department) }}">

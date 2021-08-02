@@ -99,6 +99,7 @@
                            </div>
 
                            <div class="card-body">
+						   <div class="table-responsive">
                                <table width="100%">
                                    <thead>
                                        <tr>
@@ -126,29 +127,30 @@
                                    </tbody>
                                </table>
                            </div>
-
+</div>
                        </div>
                         
                    </div>
                    <div class="customers">
                     <div class="card">
                         <div class="card-header">
-                            <h3>
+                            <h4>
                                 Administrators
-                            </h3>
+                            </h4>
                     
-                        <a href="{{ url_for('admin.allAdmin') }}" class="active">  <button>
+                        <a href="{{ url_for('admin.allAdmin') }}" class="active">  <button style="font-size:9px;">
                                 See All
-                                <span class="las la-arrow-right">
-                    
-                                </span>
+                                
                             </button>
                             </a>
                         </div>
                     
-                        {% for admins in admin %}
+                        
                         <div class="card-body">
+						<div class="table-responsive">
+						{% for admins in admin %}
                             <div class="customer">
+							
                                 <div class="info">
                                     <img src="" width="40px" height="40px" alt="">
 
@@ -161,20 +163,20 @@
                                         </small>
                                     </div>
                                 </div>
-
+							
                                 <div class="contact">
                                     <span class="las la-user-circle"></span>
-                                    <span class="las la-comment"></span>
+                                    
                                     <span class="las la-phone"></span>
                                 </div>
 
                             </div>
-
+					{% endfor %}
                             </div>
-                            {% endfor %}
-
                             
-                            </div>
+</div>
+                            
+                          
 
                    </div>
                </div>
