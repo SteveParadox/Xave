@@ -8,8 +8,7 @@ from wtforms import FileField
 class StudentRegistrationForm(FlaskForm):    
     name = StringField('Name',
                            validators=[DataRequired()])
-    matricNo = StringField('Matriculation Number',
-                           validators=[DataRequired()])
+    matricNo = StringField('Matriculation Number')
     date_of_birth = StringField('Date Of Birth',
                            validators=[DataRequired()])
     gender = StringField('Gender',
@@ -103,7 +102,8 @@ class LecturerRegistrationForm(FlaskForm):
 
     marital_status = StringField('Marital Status',
                            validators=[DataRequired()])
-
+    nationality = StringField('Nationality',
+                           validators=[DataRequired()])
     phone_number = IntegerField('Phone Number',
                            validators=[DataRequired()])
     faculty = StringField('Faculty',
@@ -111,7 +111,7 @@ class LecturerRegistrationForm(FlaskForm):
     department = StringField('Department',
                            validators=[DataRequired()])
                            
-                           
+    course_adviser = BooleanField('Adviser')                       
     photo = FileField('profile', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     document = FileField('Document', validators=[FileAllowed(['pdf', 'txt', 'docx'])])
     email = StringField('Email',
@@ -170,6 +170,9 @@ class MailForm(FlaskForm):
                         validators=[DataRequired()])
     mail = TextAreaField('Mail',
                         validators=[DataRequired()])
+    levels = RadioField('Level', choices= [("1","Level One"),("2", 'Level Two'),("3", "Level Three"),("4", "Level Four"),("5", "Level Five"),("6", "Level Six"),("7", "Level Seven")],
+                        validators=[DataRequired()])
+                       
     submit = SubmitField('Send')
     
 class AddCourseForm(FlaskForm):
