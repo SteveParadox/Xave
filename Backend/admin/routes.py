@@ -136,7 +136,7 @@ def log():
     return render_template('log.html')
 
 
-@admin.route('/admin/add', methods=['GET'])
+@admin.route('/admin/add', methods=['GET', 'POST'])
 def addAdmin():
     form= AddAdminForm()
     if form.validate_on_submit():
@@ -147,7 +147,7 @@ def addAdmin():
         admin.position= form.position.data
         admin.email=form.email.data
         admin.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        db.sessiom.add(admin)
+        db.session.add(admin)
         db.session.commit()
         return redirect(url_for('admin.AdminDashboard'))
 
@@ -254,7 +254,6 @@ today_date =date.today()
 def registerStudent():
     form = StudentRegistrationForm()
     if form.is_submitted():
-      
         student = Student()
         student.unique_id = str(uuid.uuid4())
         student.name = str(form.name.data[0]).upper() +  str(form.name.data[1:]).lower()
@@ -344,10 +343,12 @@ def registerLecturer():
         lecturer.password= bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         lecturer.gender = form.gender.data
         lecturer.address= form.address1.data
+        lecturer.nationality= form.nationality.data
         lecturer.date_of_birth =form.date_of_birth.data
         lecturer.marital_status = form.marital_status.data
         lecturer.phone_no = form.phone_number.data
         lecturer.faculty = form.faculty.data
+        lecturer.course_adviser= form.course_adviser.data
         lecturer.department = form.department.data
         dept= Department.query.filter_by(name=form.department.data).first()
         if dept:
