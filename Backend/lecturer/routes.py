@@ -77,13 +77,18 @@ def bulkStudentMail():
     dept =Department.query.filter_by(name=current_user.department).first()
     form = MailForm()
     if form.validate_on_submit():
+        print(form.levels.data)
+        #student = Student.query.filter_by(department=current_user.department).filter_by(level=int(form.levels.data)).first()
+        
         message = Message()
         message.title = form.title.data
         message.mail = form.mail.data
         message.from_ = current_user.name
+        #message.to_= student.name
         db.session.add(message)
         db.session.commit()
-        return redirect(url_for('admin.AdminDashboard'))
+        flash('Message Sent')
+        return redirect(url_for('lecturer.bulkStudentMail'))
 
     return render_template('stulect.html', form=form)
     
@@ -193,7 +198,7 @@ from wtforms import SubmitField, TextAreaField, IntegerField, StringField, Radio
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class UploadResultForm(FlaskForm):
-    semester = RadioField('Semester', choices= [("one","First Semester"),("Two", 'Second Semester')])
+    semester = RadioField('Semester', choices= [("1","First Semester"),("2", 'Second Semester')])
     grade = IntegerField('Grade')
     submit = SubmitField('Send Result')
 
@@ -202,18 +207,19 @@ class UploadResultForm(FlaskForm):
 @login_required
 @lectureR
 def uploadResult(student, dept):
-    
+    if current_user.course_adviser != True:
+        abort(403)
     form=UploadResultForm()
     student = Student.query.filter_by(name=student).first()
     dept= Department.query.filter_by(name=dept).first()
     courses = Courses.query.filter_by(level=student.level).filter_by(subject=dept).all()
     
     if form.validate_on_submit():
+        upload = Result(student_id=student.id)
+        upload.semester = int(form.semester.data)
+        upload.grade = form.grade.data
         for i in courses:
-            upload = Result(student_id=student.id)
-            upload.grade = form.grade.data
-            upload.course = "Mathematics"
-            upload.semester = form.semester.data
+            upload.course = i.name
             db.session.add(upload)
             db.session.commit()
         return redirect(url_for('lecturer.uploadResult', student=student.name, dept= dept.name))
