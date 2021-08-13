@@ -39,7 +39,24 @@ def home():
 
     return render_template('homepage.html')
 
+@student.route('/dashboard/select')
+@login_required
+def selectDashboard():
+    if current_user.is_authenticated:
+        name = Student.query.filter_by(unique_id=current_user.unique_id).first()
+        if name:
+            return redirect(url_for('student.dashboard'))
+        elif not name:
+            name = Lecturer.query.filter_by(unique_id=current_user.unique_id).first()
+            if name:
+                return redirect(url_for('lecturer.lecturerdashboard'))
+            elif not name:
+                return redirect(url_for('admin.AdminDashboard'))
+    return redirect(url_for('student.home'))
+
+
 @student.route('/logout/select')
+@login_required
 def selectLogout():
     if current_user.is_authenticated:
         name = Student.query.filter_by(unique_id=current_user.unique_id).first()
@@ -50,7 +67,6 @@ def selectLogout():
             if name:
                 return redirect(url_for('lecturer.logoutLecturer'))
             elif not name:
-                name = Lecturer.query.filter_by(unique_id=current_user.unique_id).first()
                 return redirect(url_for('admin.logoutAdmin'))
     return redirect(url_for('student.home'))
 
