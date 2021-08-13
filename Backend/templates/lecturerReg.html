@@ -35,7 +35,7 @@
                             <thead>
                                 <tr>
                                     <td>
-                                        Name
+                                       Full Name
                                     </td>
                                     <td>
                                         {{form.name()}}
@@ -48,7 +48,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        Email
+                                        Email Address
                                     </td>
                                     <td>
                                         {{form.email(type="email")}}
@@ -94,10 +94,19 @@
                                     </td>
 
                                 </tr>
+								<tr>
+                                    <td>
+                                        Nationality
+                                    </td>
+                                    <td>
+                                        {{form.nationality()}}
+                                    </td>
+
+                                </tr>
                                
                                 <tr>
                                     <td>
-                                        Address
+                                       Residential Address
                                     </td>
                                     <td>
                                         {{form.address1()}}
@@ -116,7 +125,7 @@
 
                                 <tr>
                                     <td>
-                                        Faculty
+                                        Faculty Under
                                     </td>
                                     <td>
                                         {{form.faculty()}}
@@ -126,7 +135,7 @@
 
                                 <tr>
                                     <td>
-                                        Department
+                                        Department Under
                                     </td>
                                     <td>
                                         {{form.department()}}
@@ -135,16 +144,25 @@
                                 </tr>
 								<tr>
                                     <td>
-                                        Level
+                                        Levels Teaching
                                     </td>
                                     <td>
                                         {{form.one.label()}}{{form.one}} {{form.two.label()}}{{form.two}} {{form.three.label()}}{{form.three}} {{form.four.label()}}{{form.four}} {{form.five.label()}}{{form.five}} {{form.six.label()}}{{form.six}} {{form.seven.label()}}{{form.seven}} 
                                     </td>
 
                                 </tr>
+								
+								<tr>
+								<td>
+								Course Adviser
+								</td>
+								<td>
+								{{form.course_adviser.label()}}{{ form.course_adviser }}
+								</td>
+								</tr>
  <tr>
                                     <td>
-                                        Position
+                                        Current Academic Position
                                     </td>
                                     <td>
                                         {{form.position}}

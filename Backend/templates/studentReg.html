@@ -35,7 +35,7 @@
                     <thead>
                         <tr>
                             <td>
-                                Name
+                                Full Name
                             </td>
                             <td>
                                 {{form.name()}}
@@ -48,7 +48,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                Email
+                                Email Address
                             </td>
                             <td>
                                 {{form.email(type="email")}}
@@ -73,13 +73,7 @@
                             </td>
 
                         </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td>
-                                {{form.password()}}
-                            </td>
                         
-                        </tr>
                         <tr>
                             <td>
                                 Registration Number
@@ -103,7 +97,7 @@
                                         Profile Picture
                                     </td>
                                     <td>
-                                        {{form.profile}}
+                                        {{form.photo}}
                                     </td>
 
                                 
@@ -227,7 +221,21 @@
                                 {{form.degree()}}
                             </td>
                         </tr>
-                        </fieldset>
+						<tr>
+                            <td>Password</td>
+                            <td>
+                                {{form.password()}}
+                            </td>
+                        
+                        </tr>
+                        
+						<tr>
+                            <td>Confirm Password</td>
+                            <td>
+                                {{form.password()}}
+                            </td>
+                        
+                        </tr></fieldset>
                         <td></td>
                         
                         <td>{{form.submit(class="vas")}}</td>

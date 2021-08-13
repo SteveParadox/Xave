@@ -28,8 +28,8 @@
 <canvas class="orb-canvas"></canvas>
 <!-- Overlay -->
 
-{% if current_user.is_authenticated %}<a href="{{ url_for('student.selectLogout') }}"> <h3>{{current_user.name}}</h3></a>
-<a href="{{ url_for('student.logoutStudent') }}">
+{% if current_user.is_authenticated %} <a href="{{ url_for('student.selectDashboard') }}"><h3>{{current_user.name}}</h3></a>
+<a href="{{ url_for('student.selectLogout') }}">
 Logout
 </a>
 {% else %}
