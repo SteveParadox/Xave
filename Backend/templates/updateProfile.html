@@ -27,8 +27,10 @@
       <li class="adobe-product">
        <div class="products">
             <span>{{ form.email.label() }}</span>
+		
 			</div>
-            {{form.email()}}
+			
+            {{form.email(class="cass")}}
            
        
 		</li>
@@ -37,7 +39,7 @@
        <div class="products">
             <span>{{ form.phone_number.label() }}</span>
 			</div>
-            {{form.phone_number()}}
+            {{form.phone_number(class="cass")}}
             </li>
         
 
@@ -53,7 +55,7 @@
        <div class="products">
             <span>{{ form.address1.label() }}</span>
 			</div>
-            {{form.address1()}}
+            {{form.address1(class="cass")}}
         
        </li>
 	   
@@ -66,7 +68,7 @@
         </li>
         </fieldset>
 <div class="button-wrapper">
-        {{ form.submit() }}
+        {{ form.submit(class="dass cass") }}
 		</div>
         </form>
 
