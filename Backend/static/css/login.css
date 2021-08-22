@@ -21,6 +21,9 @@
 	 background-size: 400% 400%;
 	 animation: gradient 10s ease infinite;
 }
+
+
+
  @keyframes gradient {
 	 0% {
 		 background-position: 0% 50%;
@@ -105,6 +108,7 @@
 	 border-radius: 10px;
 	 box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
 }
+
  .container::after {
 	 content: '';
 	 position: absolute;
@@ -115,6 +119,12 @@
 	 border-radius: 5px;
 	 pointer-events: none;
 	 background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 2%);
+}
+ @media screen and (max-width: 515px) {
+.container {
+	width: 32vh;
+    height: 45vh;
+	}
 }
  .form {
 	 position: relative;

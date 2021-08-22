@@ -227,21 +227,45 @@ main {
     color: #fff;
 }
   
+.vas {
+        background: none;
+        border-radius: 10px;
+        color: #cb0cd8;
+        font-size: .8rem;
+        padding: .5rem 1rem;
+        border: 1px solid var(--main--color);
+        font-weight: 600;
+        box-shadow: 4px 2px 24px 1px;
+        border: none;
+    }
 .recent-grid {
     margin-top: 3.5rem;
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 65% auto;
 }
-
-.card {
-    background: #fff;
-    border-radius: 5px;
-}
-
 .card-header,
 .card-body {
     padding: 1rem;
+}
+ @media screen and (max-width: 415px) {
+ .recent-grid {
+    margin-top: 3.5rem;
+    display: block;
+	font-size: 14px;
+}
+.card-body{
+	padding-bottom:1rem;
+	padding: 0rem;
+}
+.vas{
+	font-size: 0.7rem;
+    padding: 0.5rem 0rem;
+}
+}
+.card {
+    background: #fff;
+    border-radius: 5px;
 }
 
 .card-header {
