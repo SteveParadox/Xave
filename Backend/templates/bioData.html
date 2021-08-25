@@ -19,17 +19,18 @@
 <div class="content-section" >
     <div class="content-section-title">
         <div class="products" style="color: white;">
-    <h2>My Data</h2>
+    <h4>My Data</h>
     </div>
     </div>
 </div>
 
 <div class="card-body">
     <table width="100%"  style="color: darkgrey;">
+	<h5>Personal Information</h5>
         <thead class="adobe-product">
             <tr >
 		
-                <td >
+                <td class="products" >
                     Name
                 </td>
                 <td>
@@ -37,48 +38,8 @@
                 </td>
 				
             </tr>
-
-        </thead>
-        <tbody class="adobe-product">
-		
-            <tr>
-                <td>
-                    Email <Address></Address>
-                </td>
-                <td>
-                    {{detail.email}}
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    Phone Number
-                </td>
-                <td>
-                    {{detail.phone_number}}
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>Matriculation Number</td>
-                <td>
-                    {{detail.matriculation_number}}
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    Registration Number
-                </td>
-                <td>
-                    {{detail.registration_number}}
-                </td>
-
-            </tr>
-            <tr>
-                <td>
+			<tr>
+                <td class="products">
                     Date Of Birth
                 </td>
                 <td>
@@ -87,7 +48,7 @@
 
             </tr>
             <tr>
-                <td>
+                <td class="products">
                     Religion
                 </td>
                 <td>
@@ -96,7 +57,7 @@
 
             </tr>
             <tr>
-                <td>
+                <td class="products">
                     Marital Status
                 </td>
                 <td>
@@ -106,7 +67,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="products">
                     Nationality
                 </td>
                 <td>
@@ -114,15 +75,16 @@
                 </td>
 
             </tr>
+			
             <tr>
-                <td>State Of Origin</td>
+                <td class="products">State Of Origin</td>
                 <td>
                     {{detail.state_of_origin}}
                 </td>
 
             </tr>
             <tr>
-                <td>
+                <td class="products">
                     Local Government
                 </td>
                 <td>
@@ -132,7 +94,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="products">
                     Hometown
                 </td>
                 <td>
@@ -141,8 +103,30 @@
 
             </tr>
 
-            <tr>
+        </thead>
+		</table>
+		 <table width="100%"  style="color: darkgrey;">
+		<h5>Academic Information</h5>
+       <thead class="adobe-product">
+		 <tr>
+                <td class="products">Matriculation Number</td>
                 <td>
+                    {{detail.matriculation_number}}
+                </td>
+
+            </tr>
+			
+            <tr>
+                <td class="products">
+                    Registration Number
+                </td>
+                <td>
+                    {{detail.registration_number}}
+                </td>
+
+            </tr>
+			 <tr>
+                <td class="products">
                     Faculty
                 </td>
                 <td>
@@ -152,7 +136,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="products">
                     Department
                 </td>
                 <td>
@@ -162,7 +146,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="products">
                     Admission Year
                 </td>
                 <td>
@@ -172,7 +156,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td class="products">
                     Programme Type
                 </td>
                 <td>
@@ -181,15 +165,42 @@
 
             </tr>
             <tr>
-                <td>
+                <td class="products">
                     Degree
                 </td>
                 <td>
                     {{detail.degree}}
                 </td>
             </tr>
-        </tbody>
-    </table>
+		</thead>
+		</table>
+		 <table width="100%"  style="color: darkgrey;">
+		<h5>Contact Information</h5>
+		<thead class="adobe-product">
+		<tr >
+                <td class="products">
+                    Email <Address></Address>
+                </td>
+                <td>
+                    {{detail.email}}
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="products">
+                    Phone Number
+                </td>
+                <td>
+                    {{detail.phone_number}}
+                </td>
+
+            </tr>
+			
+			
+		</thead>
+		</table>
+
 
 </div>
 

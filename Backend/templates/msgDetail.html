@@ -16,6 +16,10 @@
         box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
 
     }
+.name{
+    font-size: 26px;
+    text-decoration: underline;
+}
 </style>
 
 
@@ -28,7 +32,8 @@
    <div class="content-section">
         
 		
-           <small>Re: {{msg.from_}}</small> <span style="font-size:13px;">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
+           <small class="name">Re: {{msg.from_}}</small> 
+		   <span style="font-size:13px;">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
                     <h3 style="font-size:13px;">{{ msg.mail }}</h3>
                
                     

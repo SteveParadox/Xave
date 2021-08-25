@@ -16,6 +16,18 @@
         box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
 
     }
+	
+.name{
+font-size: 14px;
+}
+.date{
+    float: right;
+	font-size:12px;
+	color: #fff;
+}
+.headd{
+text-decoration: underline;
+}
 </style>
 
 <div class="main-header">
@@ -30,28 +42,27 @@
 </div>
 
 
-School Mail
+<h4 class="headd">School Mail</h4>
 {% for msg in message %}
+
 
 <table width="100%"  style="color: darkgrey;">
    <div class="content-section">
         <tbody>
 		
             <tr  class="adobe-product">
-                <td>
-                    <small>Re: {{msg.from_}}</small>
+                <td style="width: 10rem;" >
+                    <small class="name">Re: {{msg.from_}}</small>
                 </td>
-                <td style="    width: 54%;">
-                  <a href="{{ url_for('lecturer.messageDetail', msg_id=msg.id) }}" >  <span style="font-size: 13px;
-    color: white;">{{ msg.title }}</span>
-				  	</a>
+                <td style=" width: 55%;">
+                    <a href="{{ url_for('student.messageDetail', msg_id=msg.id) }}" ><span style="font-size: 13px;
+    color: white;">{{ msg.title }}</span></a>
                 </td>
 				<td>
-                    <span style="font-size:13px;">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
+                    <span class="date">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
                 </td>
 
             </tr>
-		
 			</tbody>
 			</div>
 			

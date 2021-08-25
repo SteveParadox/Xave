@@ -3,10 +3,12 @@
 
 
 <style>
-
+.form__group{
+    margin-bottom: 1rem;
+}
 .form__label {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
+  font-size: 14px;
   margin-left: 2rem;
   margin-top: 0.7rem;
   display: block;
@@ -14,27 +16,59 @@
   transform: translateY(0rem);
 }
 
-.form__input {
-  font-family: 'Roboto', sans-serif;
+.title__input{
+    border: 2px solid;
+    border-radius: 17px;
+    height: 1rem;
+	 font-family: 'Roboto', sans-serif;
   color: #333;
-  font-size: 1.2rem;
+  font-size: 16px;
 	margin: 0 auto;
+	margin-top: 1rem;
   padding: 1.5rem 2rem;
-  border-radius: 0.2rem;
   background-color: rgb(255, 255, 255);
-  border: none;
   width: 90%;
   display: block;
-  border-bottom: 0.3rem solid transparent;
   transition: all 0.3s;
 }
 
+.form__input {
+border: 2px solid;
+    border-radius: 17px;
+    height: 10rem;
+margin-top: 1rem;
+  
+  color: #333;
+  font-size: 20px;
+	margin: 0 auto;
+  padding: 1.5rem 2rem;
+ 
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  display: block;
+  transition: all 0.3s;
+}
+input{
+    width: 30%;
+}
+.level__input {
+margin-top: 1rem;
+  color: #333;
+	margin: 0 auto;
+  padding: 1.5rem 2rem;
+ 
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  display: block;
+  transition: all 0.3s;
+}
 .form__input:placeholder-shown + .form__label {
   opacity: 0;
   visibility: hidden;
   -webkit-transform: translateY(-4rem);
   transform: translateY(-4rem);
 }
+
 
 </style>
 
@@ -58,15 +92,17 @@
                     <fieldset style="border: none;">
                         <div class="form__group">
   {{form.title.label(class="form__label")}}
-  {{ form.title(class="form__input", placeholder="Title")}}
+  {{ form.title(class="title__input", placeholder="Title")}}
 </div>
 
 <div class="form__group">
   {{form.mail.label(class="form__label")}}
-  {{ form.mail(class="form__input", placeholder="Mail")}}
+  {{ form.mail(class="form__input", placeholder="Construct Mail")}}
 </div>
+
+
 </fieldset>
-<button>{{form.submit}}</button>
+<button style="margin-left: 3rem;">{{form.submit(style="width: 7rem;")}}</button>
 </form>
 </div>
 </div>

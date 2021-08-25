@@ -14,8 +14,28 @@
         color: #fff;
         font-size: 16px;
         box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
-
+		
     }
+	
+.name{
+    font-size: 26px;
+    text-decoration: underline;
+}
+.date{
+font-size: 12px;
+color: #99999a;
+}
+
+.content{
+    
+    margin-top: 5rem;
+    
+	padding: 0rem 2rem;
+}
+.title{
+font-size: 20px;
+text-decoration: underline;
+}
 </style>
 
 
@@ -24,16 +44,20 @@
 
 
 
-<table width="100%"  style="color: darkgrey;">
    <div class="content-section">
         
 		
-           <small>Re: {{msg.from_}}</small> <span style="font-size:13px;">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
-                    <h3 style="font-size:13px;">{{ msg.mail }}</h3>
-               
+           <small class="name">Re: {{msg.from_}}</small> 
+		   <span class="date">{{msg.created_on.strftime('%d/%B/%Y')}}</span>
+		   <div class="content">
+		   <h3 class="title">{{ msg.title }}</h3>
+                    <p>{{ msg.mail }}</p>
+               </div>
                     
             
 			</div>
+			
+			<p style="margin-top:7rem; font-size:12px;">Do not reply this message!</p>
 			
 			
 
