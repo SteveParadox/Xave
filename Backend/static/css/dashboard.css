@@ -59,7 +59,7 @@ body {
 }
 @media screen and (max-width: 480px) {
   body {
-    padding: 0.5rem;
+    padding: 0.5rem 0rem;
   }
 }
 @media screen and (max-width: 660px) {
@@ -340,9 +340,18 @@ body.light-mode:before {
   align-items: center;
   font-weight: 400;
   padding: 10px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 6px;
   transition: 0.3s;
+}
+
+@media only screen and (max-width: 600px){
+.side-menu a {
+  
+  font-size: 22px;
+  
+}
+	
 }
 .side-menu a:hover {
   background-color: var(--hover-menu-bg);

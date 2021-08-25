@@ -25,6 +25,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 body {
   max-width: 1920px;
   min-height: 100vh;
@@ -48,6 +50,39 @@ body {
 
 strong {
   font-weight: 600;
+}
+
+.overlayx {
+	padding: 1.5rem 5rem;
+	margin-top: 1rem;
+    width: 100%;
+    max-width: 1140px;
+    max-height: 64px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.375);
+    box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+@media only screen and (max-width: 1140px){
+.overlayx {
+    padding: 8rem 4rem;
+}
+}
+
+@media only screen and (max-width: 840px){
+.overlayx {
+    padding: 4rem;
+    height: auto;
+}
+}
+
+@media only screen and (max-width: 600px){
+.overlayx {
+    padding: 1.5rem;
+}
 }
 
 .overlay {
@@ -114,6 +149,32 @@ strong {
   transition: transform 150ms ease;
   outline-color: hsl(var(--hue), 95%, 50%);
 }
+.container {
+  background-image: url('../static/matric.jpg');
+  display: block;
+  float: left;
+  height: 500px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-blend-mode: screen;
+}
+.news{
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}	
+ @media screen and (max-width: 415px) {
+	 body {
+		     min-height: 55vh;
+	 }
+	 
+.container {
+    height: 35vh;
+	 } 
+.news{
+	margin-top: 1.5rem;
+	margin-bottom: .5rem;
+}	 
+ }
 
 .overlay__btn:hover {
   transform: scale(1.05);
