@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextAreaField, IntegerField, StringField, PasswordField, SubmitField,RadioField, BooleanField, DateField,TextAreaField
+from wtforms import SubmitField, TextAreaField, IntegerField, StringField, PasswordField, SubmitField,RadioField, BooleanField, DateField,TextAreaField,SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_wtf.file import FileAllowed
 from wtforms import FileField
@@ -11,8 +11,8 @@ class StudentRegistrationForm(FlaskForm):
     matricNo = StringField('Matriculation Number')
     date_of_birth = StringField('Date Of Birth',
                            validators=[DataRequired()])
-    gender = StringField('Gender',
-                           validators=[DataRequired()])
+    gender = SelectField('Gender', choices= [("Male","Male"),("Female", 'Female'),("None", "Can't Say")], validators=[DataRequired()])
+
     nationality = StringField('Nationality',
                            validators=[DataRequired()])
     state_of_origin = StringField('State Of Origin',
@@ -27,10 +27,10 @@ class StudentRegistrationForm(FlaskForm):
     photo = FileField('profile', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     address2 = StringField('Matriculation Number',
                            validators=[DataRequired()])
-    marital_status = StringField('Marital Status',
-                           validators=[DataRequired()])
-    religion = StringField('Religion',
-                           validators=[DataRequired()])
+    marital_status = SelectField('Marital Status', choices= [("Single","Single"),("Married", 'Married'), ("Complicated", "Its Complicated")], validators=[DataRequired()])
+
+    religion = SelectField('Religion ', choices= [("Christianity","Christianity"),("Muslim", 'Musilm'), ("Others", "Others")], validators=[DataRequired()])
+
     phone_number = IntegerField('Phone Number',
                            validators=[DataRequired()])
     registration_number = StringField('Registration Number',
@@ -42,11 +42,10 @@ class StudentRegistrationForm(FlaskForm):
     
     admission_year = IntegerField('Admission Year',
                            validators=[DataRequired()])
-    programme_type = StringField('Programme Type',
-                           validators=[DataRequired()])
+    programme_type = SelectField('Programme Type', choices= [("regular","Regular"),("part-time", 'Part-Time')], validators=[DataRequired()])
 
-    degree = StringField('Degree',
-                           validators=[DataRequired()])
+
+    degree = SelectField('Degree', choices= [("Bachelor's Degree","Bachelor"),("Masters", 'Masters'), ("PhD", "PhD")], validators=[DataRequired()])
 
     email = StringField('Email',
                         validators=[DataRequired(), Email('Invalid Email')])
@@ -62,15 +61,15 @@ class StudentEditForm(FlaskForm):
     name = StringField('Name')
     matricNo = StringField('Matriculation Number')
     date_of_birth = StringField('Date Of Birth')
-    gender = StringField('Gender')
+    gender = SelectField('Gender', choices= [("male","Male"),("female", 'Female'),("none", "Can't Say")])
     nationality = StringField('Nationality')
     state_of_origin = StringField('State Of Origin')
     local_government = StringField('Local Government')
     hometown = StringField('Hometown')     
     address1 = StringField('Address')
     address2 = StringField('Matriculation Number')
-    marital_status = StringField('Marital Status')
-    religion = StringField('Religion')
+    marital_status = SelectField('Marital Status', choices= [("Single","Single"),("Married", 'Married'), ("Complicated", "Its Complicated")])
+    religion = SelectField('Religion ', choices= [("Christianity","Christianity"),("Muslim", 'Muslim'), ("Others", "Others")])
     phone_number = IntegerField('Phone Number')
     registration_number = StringField('Registration Number')
     faculty = StringField('Faculty')
@@ -94,14 +93,14 @@ class LecturerRegistrationForm(FlaskForm):
                            validators=[DataRequired()])
     date_of_birth = StringField('Date Of Birth',
                            validators=[DataRequired()])
-    gender = StringField('Gender',
-                           validators=[DataRequired()])
+    gender = SelectField('Gender', choices= [("Male","Male"),("Female", 'Female'),("None", "Can't Say")], validators=[DataRequired()])
+
                            
     address1 = StringField('Address',
                            validators=[DataRequired()])
 
-    marital_status = StringField('Marital Status',
-                           validators=[DataRequired()])
+    marital_status = SelectField('Marital Status', choices= [("Single","Single"),("Married", 'Married'), ("Complicated", "Its Complicated")], validators=[DataRequired()])
+
     nationality = StringField('Nationality',
                            validators=[DataRequired()])
     phone_number = IntegerField('Phone Number',
@@ -136,11 +135,8 @@ class LecturerRegistrationForm(FlaskForm):
 
 class AddAdminForm(FlaskForm):
     name = StringField('Name',
-                           validators=[DataRequired()])
-    gender = StringField('Gender',
-                           validators=[DataRequired()])
-                           
-    
+                           validators=[DataRequired()])            
+    gender = SelectField('Gender', choices= [("Male","Male"),("Female", 'Female'),("None", "Can't Say")], validators=[DataRequired()])
     position = StringField('Position',
                            validators=[DataRequired()])
     email = StringField('Email',
@@ -170,9 +166,7 @@ class MailForm(FlaskForm):
                         validators=[DataRequired()])
     mail = TextAreaField('Mail',
                         validators=[DataRequired()])
-    levels = RadioField('Level', choices= [("1","Level One"),("2", 'Level Two'),("3", "Level Three"),("4", "Level Four"),("5", "Level Five"),("6", "Level Six"),("7", "Level Seven")],
-                        validators=[DataRequired()])
-                       
+              
     submit = SubmitField('Send')
     
 class AddCourseForm(FlaskForm):
