@@ -4,7 +4,6 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
 from flask_marshmallow import Marshmallow
-from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from Backend.config import Config
 from flask_profiler import Profiler
@@ -25,7 +24,6 @@ app.config['flask_profiler']={
 	}
 }
 
-#SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:1234@localhost:5432/xaveDb
 
 bcrypt= Bcrypt()
 jwt= JWTManager()
@@ -48,7 +46,6 @@ def create_app(config_class=Config):
     ma.init_app(app)
     mail.init_app(app)
     jwt.init_app(app)
-    #profiler.init_app(app)
     login_manager.init_app(app)
 
 
