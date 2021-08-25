@@ -82,6 +82,7 @@ def loginAdmin():
             return redirect(next_page) if next_page else redirect(url_for('admin.AdminDashboard'))
         else:
             redirect(url_for('admin.loginAdmin'))
+            flash('Login failed. please check email and password', 'danger')
     else:
         redirect(url_for('admin.loginAdmin'))
     return render_template('loginAdmin.html', title="Login to Portal", form=form)
@@ -167,6 +168,7 @@ def bulkMail():
         message.from_ = 'school'
         db.session.add(message)
         db.session.commit()
+        print("Sent")
         return redirect(url_for('admin.AdminDashboard'))
 
     return render_template('mail.html', form=form)
@@ -312,7 +314,7 @@ def editStudent(unique_id):
         student.address1 = form.address1.data
         student.marital_status = form.marital_status.data
         student.religion = form.religion.data
-        student.phone_number = form.phone_number.data
+        student.phone_number = student.phone_number
         student.registration_number = form.registration_number.data
         try:
             student.matriculation_number = str(form. matricNo.data[0]).upper() + str(form. matricNo.data[1:]).lower()
@@ -320,7 +322,7 @@ def editStudent(unique_id):
             pass
         student.faculty = form.faculty.data
         student.department = form.department.data
-        student.admission_year= form.admission_year.data
+        student.admission_year= student.admission_year
         student.programme_type = form.programme_type.data
         student.degree= form.degree.data
         student.passport= form.name.data
@@ -348,6 +350,7 @@ def registerLecturer():
         lecturer.marital_status = form.marital_status.data
         lecturer.phone_no = form.phone_number.data
         lecturer.faculty = form.faculty.data
+        lecturer.marital_status = form.marital_status.data
         lecturer.course_adviser= form.course_adviser.data
         lecturer.department = form.department.data
         dept= Department.query.filter_by(name=form.department.data).first()
@@ -447,7 +450,7 @@ def logInAdmin(expires_sec=30):
 def openPortal():
     portal= School.query.filter_by(id=1).first()
     if not portal:
-        portal= School()
+        portal= School(id=1)
         portal.portal_toggle = True
         db.session.add(portal)
         db.session.commit()
