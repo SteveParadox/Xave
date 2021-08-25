@@ -429,7 +429,7 @@ tr td:last-child {
         grid-template-columns: 100%;
     }
     .search-wrapper {
-        display: none;
+        display: flex;
     }
     
 }
