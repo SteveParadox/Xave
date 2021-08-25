@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
 from flask_marshmallow import Marshmallow
+from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from Backend.config import Config
 from flask_profiler import Profiler
@@ -24,6 +25,8 @@ app.config['flask_profiler']={
 	}
 }
 
+#SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:1234@localhost:5432/xaveDb
+
 bcrypt= Bcrypt()
 jwt= JWTManager()
 mail = Mail()
@@ -31,7 +34,7 @@ ma = Marshmallow()
 db = SQLAlchemy()
 profiler = Profiler()
 login_manager = LoginManager()
-login_manager.login_view = 'student.loginPortal'
+login_manager.login_view = 'student.home'
 login_manager.login_message = None
 login_manager.session_protection = "strong"
 REMEMBER_COOKIE_NAME= 'remember_token'
