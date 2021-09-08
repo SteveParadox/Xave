@@ -1,28 +1,169 @@
-{% extends '_ext/layout.html' %}
+  {% extends '_ext/layout.html' %}
 {% block content %}
+<input type="checkbox" id="nav-toggle">
+  <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
 
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+			<li><a href="{{ url_for('student.dashboard') }}" class="active"><span class="las la-route"></span><span>Profile</span></a>
+                    </li>
+                <li><a href="{{ url_for('student.bioData') }}" ><span class="las la-igloo"></span><span>Bio Data</span></a>
+                </li>
+                <li><a href="{{ url_for('student.result') }}"><span class="las la-users"></span><span>Results</span></a>
+                </li>
+                <li><a href="{{ url_for('student.feeStatus') }}"><span class="las la-users"></span><span>Fees </span></a>
+                </li>
+                
+                    <li><a href="{{ url_for('student.registerCourses') }}"><span class="las la-clone"></span><span>Courses</span></a>
+                </li>
 
-   <div class="content-wrapper">
-      <div class="content-section">
-         <div class="content-section-title content-wrapper-header " style="color: #c4c9ff;">Welcome! {{current_user.name}}</div>
-      </div>
-      
-    <div class="content-wrapper-header">
-     <div class="content-wrapper-context">
-      <h3 class="img-content">
-       
-       Notice!!
-      </h3>
-      <div class="content-text">Due to Covid-19 protocol, classes will be held online till further notice.</div>
-      <button class="content-button">More Update</button>
-     </div>
-     <img class="content-wrapper-img" src="https://assets.codepen.io/3364143/glass.png" alt="">
+                <li><a href="{{ url_for('student.studentMail') }}"><span class="las la-bullseye"></span><span>Mails</span></a>
+                    </li>
+                    <li><a href="{{ url_for('student.updateProfile') }}"><span class="las la-history"></span><span>Update Profile</span></a></li>
+                    
+<li><a href="{{ url_for('student.logoutStudent') }}"><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+            </ul>
+
+        </div>
     </div>
+	 <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars">
     
-     </div>
-     
-     </div>
-     
-    </div>
-   </div>
-{% endblock content %}
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
+           <main>
+               <div class="cards">
+                   <div class="card-single">
+                       <div>
+                           
+                         <a href="{{ url_for('student.bioData') }}" >  <span>Bio Data</span></a>
+                       </div>
+                       <div>
+                           <span class="las la-users">
+
+                           </span>
+                       </div>
+                   </div>
+
+                
+                <div class="card-single">
+                    <div>
+                     
+                    <a href="{{ url_for('student.result') }}"><span>Results</span></a>
+                    </div>
+                    <div>
+                        <span class="las la-clipboard">
+                
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        
+                       <a href="{{ url_for('student.feeStatus') }}"> <span>Fees</span></a>
+                    </div>
+                    <div>
+                        <span class="las la-shopping-bag">
+                
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        
+                       <a href="{{ url_for('student.registerCourses') }}"> <span>Courses</span></a>
+                    </div>
+                    <div>
+                        <span class="las la-google-wallet">
+                
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="card-single">
+                    <div>
+                        
+                        <a href="{{ url_for('student.studentMail') }}"><span>Mails</span></a>
+                    </div>
+                    <div>
+                        <span class="las la-google-wallet">
+                
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        
+                       <a href="{{ url_for('student.updateProfile') }}"> <span>Update Profile</span></a>
+                    </div>
+                    <div>
+                        <span class="las la-google-wallet">
+                
+                        </span>
+                    </div>
+                </div>
+
+               
+                <div class="card-single">
+                    <div>
+                        <h1>1st</h1>
+                        <span>Semester</span>
+                    </div>
+                    <div>
+                        <span class="las la-superpowers">
+                
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>Week 25</h1>
+                        <span>Session Calender</span>
+                    </div>
+                    <div>
+                        <span class="las la-google-wallet">
+                
+                        </span>
+                    </div>
+                </div>
+
+
+
+               </div>
+
+               
+           </main>
+		   </div>
+    </body>
+  
+		   {% endblock content %}

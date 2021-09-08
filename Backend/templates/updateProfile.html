@@ -1,76 +1,151 @@
 {% extends '_ext/layout.html' %}
 {% block content %}
+<input type="checkbox" id="nav-toggle">
+ <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
+
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+			<li><a href="{{ url_for('student.dashboard') }}" ><span class="las la-route"></span><span>Profile</span></a>
+                    </li>
+                <li><a href="{{ url_for('student.bioData') }}" ><span class="las la-igloo"></span><span>Bio Data</span></a>
+                </li>
+                <li><a href="{{ url_for('student.result') }}"><span class="las la-users"></span><span>Results</span></a>
+                </li>
+                <li><a href="{{ url_for('student.feeStatus') }}"><span class="las la-users"></span><span>Fees </span></a>
+                </li>
+                
+                    <li><a href="{{ url_for('student.registerCourses') }}"><span class="las la-clone"></span><span>Courses</span></a>
+                </li>
+
+                <li><a href="{{ url_for('student.studentMail') }}"><span class="las la-bullseye"></span><span>Mails</span></a>
+                    </li>
+                    <li><a href="{{ url_for('student.updateProfile') }}" class="active"><span class="las la-history"></span><span>Update Profile</span></a></li>
+                    
+<li><a href="{{ url_for('student.logoutStudent') }}"><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </div>
+ <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars">
+    
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
 
 <style>
-    input {
-        width: 80%;
-        outline: none;
-        border: none;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 10px;
-        padding-left: 40px;
-        border-radius: 15px;
-        color: #fff;
-        font-size: 16px;
-        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
-        
-    }
+.xxx{
+margin-bottom: 2rem;
+}
+
 </style>
-<form method="POST" action="">
-    {{ form.hidden_tag() }}
-    <fieldset style="border: none;">
-        
-		<div class="content-section">
-    
-     <ul>
-      <li class="adobe-product">
-       <div class="products">
-            <span>{{ form.email.label() }}</span>
-		
-			</div>
-			
-            {{form.email(class="cass")}}
+
+<div class="recent-grid">
+    <div class="projects">
+        <div class="card" style=" margin-top: 4rem;">
+            <div class="card-header">
+                <h3>
+                    Update Profile
+                </h3>
+
+
+            </div>
+
+            <div class="card-body">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    
+               <table>
+                    <tbody>
+                        <tr class="xxx">
+                            <td>
+                                {{ form.email.label() }}
+                            </td>
+                            <td>
+                                {{form.email(type="email", class="cass")}}
+                            </td>
+
+                        </tr>
+
+                        
+                        <tr class="xxx">
+                            <td>
+                                Marital Status
+                            </td>
+                            <td>
+                                {{form.marital_status()}}
+                            </td>
+
+                        </tr>
+
+                        <tr class="xxx">
+                            <td>
+                                {{ form.phone_number.label() }}
+                            </td>
+                            <td>
+                               {{ form.phone_number(class="cass") }}
+                            </td>
+
+                        </tr>
+                        <tr class="xxx">
+                            <td>{{ form.address1.label() }}</td>
+                            <td>
+                                 {{form.address1(class="cass")}}
+                            </td>
+
+                        </tr>
+                        <tr class="xxx">
+                            <td>
+                                {{ form.religion.label() }}
+                            </td>
+                            <td>
+                               {{ form.religion }}
+                            </td>
+
+                        </tr>
+						<tr class="xxx">
+                        <td></td>
+                        
+                        <td>{{form.submit(class="vas")}}</td>
+                        </tr>
+                    </tbody>
+                   
+                </table>
+                
+                </form>
+            </div>
+
            
-       
-		</li>
 
-        <li class="adobe-product">
-       <div class="products">
-            <span>{{ form.phone_number.label() }}</span>
-			</div>
-            {{form.phone_number(class="cass")}}
-            </li>
-        
+           
 
-       <li class="adobe-product">
-       <div class="products">
-            <span>{{ form.marital_status.label() }}</span>
-			</div>
-            {{form.marital_status()}}
-            
-        </li>
-		
-        <li class="adobe-product">
-       <div class="products">
-            <span>{{ form.address1.label() }}</span>
-			</div>
-            {{form.address1(class="cass")}}
-        
-       </li>
-	   
-         <li class="adobe-product">
-       <div class="products">
-            <span>{{ form.religion.label() }}</span>
-			</div>
-            {{form.religion()}}
-        
-        </li>
-        </fieldset>
-<div class="button-wrapper">
-        {{ form.submit(class="dass cass") }}
-		</div>
-        </form>
-
+        </div>
+    </div>
+</div>
+</div>
 
 {% endblock content %}

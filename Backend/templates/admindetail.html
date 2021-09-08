@@ -1,19 +1,5 @@
 {% extends "_ext/adminLayout.html"%}
 {% block content %}
-
-<style>
-    .vas {
-        background: none;
-        border-radius: 10px;
-        color: #cb0cd8;
-        font-size: .8rem; 
-        padding: .5rem 1rem; 
-        border: 1px solid var(--main--color);
-        font-weight: 600;
-	box-shadow: 4px 2px 24px 1px;
-    	border: none;
-    }
-</style>
 <input type="checkbox" id="nav-toggle">
 <div class="sidebar">
         <div class="sidebar-brand">
@@ -31,13 +17,13 @@
                 </li>
                 <li><a href="{{ url_for('admin.studentDetail') }}"><span class="las la-users"></span><span>Student Management</span></a>
                 </li>
-                <li><a href="{{ url_for('admin.lecturerDashboard') }}" class="active"><span class="las la-users"></span><span>Lecturer Management</span></a>
+                <li><a href="{{ url_for('admin.lecturerDashboard') }}"><span class="las la-users"></span><span>Lecturer Management</span></a>
                 </li>
                 
                     <li><a href="{{ url_for('admin.bulkMail') }}"><span class="las la-clone"></span><span>Bulk Mail</span></a>
                 </li>
 
-                <li><a href="{{ url_for('admin.adminControl') }}"><span class="las la-bullseye"></span><span>Administration Control</span></a>
+                <li><a href="{{ url_for('admin.adminControl') }}" class="active"><span class="las la-bullseye"></span><span>Administration Control</span></a>
                     </li>
                     <li><a href="{{ url_for('admin.log') }}"><span class="las la-history"></span><span>Activities Log</span></a></li>
                     <li><a href="{{ url_for('admin.logoutAdmin') }}"><span class="las la-route"></span><span>Logout</span></a>
@@ -67,12 +53,16 @@
                 </div>
             </div>
         </header>
+<div class="recent-grid">
+    
+</div>
+
 <div class="recent-grid" >
     <div class="projects">
         <div class="card" style=" margin-top: 1rem;">
             <div class="card-header ">
                 <h3>
-                    Lecturer Details
+                    Student Details
                 </h3>
 
                
@@ -110,105 +100,49 @@
 
                         <tr>
                             <td>
-                                Phone Number
-                            </td>
-                            <td>
-                                {{detail.phone_no}}
-                            </td>
-                            
-                        </tr>
-
-                        
-                        <tr>
-                            <td>
-                                Date Of Birth
-                            </td>
-                            <td>
-                                {{detail.date_of_birth}}
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>
-                              Gender
+                                Gender
                             </td>
                             <td>
                                 {{detail.gender}}
                             </td>
-                        
-                        </tr>
-                        <tr>
-                            <td>
-                                Marital Status
-                            </td>
-                            <td>
-                               Married
-                            </td>
-                        
-                        </tr>
-
-                        <tr>
-                            <td>
-                               Nationality
-                            </td>
-                            <td>
-                               Nigeria
-                            </td>
                             
                         </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td>
-                               {{detail.address}}
-                            </td>
-                           
-                        </tr>
-                 
-                   
-                       
-                        <tr>
-                            <td>
-                                Faculty
-                            </td>
-                            <td>
-                                {{detail.faculty}}
-                            </td>
-                        
-                        </tr>
 
                         <tr>
-                            <td>
-                                Department
-                            </td>
-                            <td>
-                                {{detail.department}}
-                            </td>
-                        
-                        </tr>
-
-                       
-
-                        <tr>
-                            <td>
-                                Position
-                            </td>
+                            <td> Position</td>
                             <td>
                                 {{detail.position}}
                             </td>
-                        
+                            
                         </tr>
+                        
                         
                     </tbody>
                 </table>
             </div>
 
+            <div class="card">
+                <div class="card-header" style="color:rgb(177, 5, 5) ">
+                    <h3>
+                        Delete Admin
+                    </h3>
+            
+                    <a href="{{ url_for('admin.deleteAdmin', unique_id=detail.unique_id) }}">
+                        <button style="background: red">
+                        Delete
+                        <span class="las la-trash">
+            
+                        </span>
+                    </button>
+                    </a>
+                </div>
+                </div>
 
-
-
-      
         </div>
     </div>
-</div></div>
-
+</div>
+    </div>
+    
+  
 
 {% endblock content %}

@@ -1,56 +1,121 @@
 {% extends '_ext/layout.html' %}
 {% block content %}
+<style>
 
-<div class="main-header">
+.card-single{
+margin-bottom: .7rem;
+padding: 1rem;
+}
+
+.recent-grid {
+    margin-top: 1.5rem;
+	}
+	
+tr{
+text-decoration: underline;
+}
+
+.card-single:last-child {
+background: white;
+}
+</style>
+<input type="checkbox" id="nav-toggle">
+ <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
+
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+			<li><a href="{{ url_for('student.dashboard') }}" ><span class="las la-route"></span><span>Profile</span></a>
+                    </li>
+                <li><a href="{{ url_for('student.bioData') }}" ><span class="las la-igloo"></span><span>Bio Data</span></a>
+                </li>
+                <li><a href="{{ url_for('student.result') }}"><span class="las la-users"></span><span>Results</span></a>
+                </li>
+                <li><a href="{{ url_for('student.feeStatus') }}"><span class="las la-users"></span><span>Fees </span></a>
+                </li>
+                
+                    <li><a href="{{ url_for('student.registerCourses') }}" class="active"><span class="las la-clone"></span><span>Courses</span></a>
+                </li>
+
+                <li><a href="{{ url_for('student.studentMail') }}"><span class="las la-bullseye"></span><span>Mails</span></a>
+                    </li>
+                    <li><a href="{{ url_for('student.updateProfile') }}"><span class="las la-history"></span><span>Update Profile</span></a></li>
+                    
+<li><a href="{{ url_for('student.logoutStudent') }}"><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </div>
+	<div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars">
+    
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
+<main>
+
+
     
     <div class="header-menu">
-        <a class="main-header-link is-active" href="#">Register Courses</a>
-        <a class="main-header-link" href="{{ url_for('student.viewRegisteredCourses') }}">View Registered Courses</a>
-        <a class="main-header-link" href="#">Course Materials</a>
+        <a class="active card-single" href="#">Register Courses</a>
+        <a class=" card-single" href="{{ url_for('student.viewRegisteredCourses') }}">View Registered Courses</a>
+        <a class=" card-single" href="#">Course Materials</a>
 
     </div>
     
-</div>
 
-<div class="content-button  open" style="margin-top: 2rem; visibility: hidden;"> 
-   
-   </div>
-   
-   
-{% if form != ""%}
 
-	
-    <div class="content-section">
-	<ul >
-	{% for course in courses  %}
-      <li class="adobe-product">
-       <div class="products">
-        {{ course.name }}
-		</div>
-		
-		<div class="button-wrapper" >
-		
-        <form method="POST" action="" >
+
+	  
+
+    <div class="projects">
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    Register Courses
+                </h3>
+            </div>
+            <div class="card-body">
+			{% for course in courses  %}
+                <table width="100%">
+				<tbody>
+				<form method="POST" action="">
                     {{ form.hidden_tag() }}
-        {{ form.registered()}}
-    
+				<tr>
+				<td>{{ course.name }}</td>
+                <td>{{ form.registered()}}</td>   
+				</tr>
+			{% endfor %}
+				</tbody>
+				</table>
+				{{form.submit(class="vas")}}
+				</form>	
     </div>
-	</li>
- 
-    
-    {% endfor %}
-	</ul>
 	</div>
-     
-        {{ form.submit(class="content-button", style="width: 80%;") }}
-		
-	 </form>
-       
-       
-		
-	 {% else %}
-	 <div class="content-button  open" style="margin-top: 2rem;">
-	 
-	 </div>
-	   {% endif %}
+	</div>
+	   </main>
+	   </div>
 {% endblock content %}

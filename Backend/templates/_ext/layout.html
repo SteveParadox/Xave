@@ -3,130 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
- 
+    <title>
+        Xave Admin
+    </title>
+
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
 
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
 
 
-<div class="dark-light">
+		
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
 
-    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-    </svg>
-</div>
-<div class="app">
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
 
-    <div class="header">
-        <div class="menu-circle"></div>
-        <div class="header-menu">
-            
-            <a class="menu-link notify" href="#">Discover</a>
-            <a class="menu-link " href="#">School Calender</a>
-        </div>
-   
-        <div class="header-profile">
-            
-            
-            <img class="profile-img"
-                src="https://images.unsplash.com/photo-1600353068440-6361ef3a86e8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
-                alt="">
-				{{current_user.name}}
-        </div>
-    </div>
-	
-    <div class="wrapper ">
-        <div class="left-side ">
-            <div class="side-wrapper">
-                <div class="side-title">Student</div>
-                <div class="side-menu">
-                    <a href="{{ url_for('student.dashboard') }}" >
-                       <i class="fa fa-dashboard"></i>
-                        Profile
-                    </a>
-
-                    
-                    <a href="{{ url_for('student.logoutStudent') }}">
-                         <i class="fa fa-rotate-left"></i>
-
-                        Logout
-                    </a>
-                </div>
-            </div>
-            <div class="side-wrapper">
-                <div class="side-title">Activities</div>
-                <div class="side-menu">
-                    <a href="{{ url_for('student.bioData') }}">
-					<i class="fa fa-id-badge" style="font-size:17px"></i>
-                        Bio Data
-                    </a>
-                  
-                    <a href="{{ url_for('student.result') }}" >
-					<i class="fa fa-newspaper-o"></i>
-                        Results
-                        <span class="notification-number updates">3</span>
-                    </a>
-                    <a href="{{ url_for('student.feeStatus') }}">
-					<i class="fa fa-credit-card"></i>
-                        Fees
-                    </a>
-                    <a href="{{ url_for('student.registerCourses') }}">
-					<i class="fa fa-list"></i>
-                        Courses
-                    </a>
-                    <a href="{{ url_for('student.studentMail') }}">
-					<i class="fa fa-envelope-o"></i>
-                        Mails
-                        <span class="notification-number updates">20</span>
-                    </a>
-                    <a href="{{ url_for('student.updateProfile') }}">
-					<i class="fa fa-pencil-square-o"></i>
-                        Update Profile
-                    </a>
-                    <a href="#">
-					<i class="fa fa-question" style="font-size:20px"></i>
-                        Online Quiz
-                    </a>
-
-                </div>
-            </div>
-            <div class="side-wrapper">
-                <div class="side-title">Resource Links</div>
-                <div class="side-menu">
-
-                    <a href="#">
-                       <i class="fa fa-child" style="font-size:20px"></i>
-                        Tutorials
-                    </a>
-
-                    <a href="#">
-                        <i class="fa fa-group"></i>
-                        Social Forum
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div id="app"></div>
-        <div class="main-container">
-            
-            <div class="content-wrapper">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                {% for category, message in messages %}
-                
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
-                
-            </div>
-        </div>
-    </div>
-    <div class="overlay-app"></div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
+  
+    </html>

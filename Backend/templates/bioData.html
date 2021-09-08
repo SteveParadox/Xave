@@ -1,21 +1,61 @@
 {% extends '_ext/layout.html' %}
 {% block content %}
-<style>
-    input {
-        width: 80%;
-        outline: none;
-        border: none;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 10px;
-        padding-left: 40px;
-        border-radius: 15px;
-        color: #fff;
-        font-size: 16px;
-        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+<input type="checkbox" id="nav-toggle">
+ <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
 
-    }
-</style>
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+			<li><a href="{{ url_for('student.dashboard') }}" ><span class="las la-route"></span><span>Profile</span></a>
+                    </li>
+                <li><a href="{{ url_for('student.bioData') }}" class="active"><span class="las la-igloo"></span><span>Bio Data</span></a>
+                </li>
+                <li><a href="{{ url_for('student.result') }}"><span class="las la-users"></span><span>Results</span></a>
+                </li>
+                <li><a href="{{ url_for('student.feeStatus') }}"><span class="las la-users"></span><span>Fees </span></a>
+                </li>
+                
+                    <li><a href="{{ url_for('student.registerCourses') }}"><span class="las la-clone"></span><span>Courses</span></a>
+                </li>
+
+                <li><a href="{{ url_for('student.studentMail') }}"><span class="las la-bullseye"></span><span>Mails</span></a>
+                    </li>
+                    <li><a href="{{ url_for('student.updateProfile') }}"><span class="las la-history"></span><span>Update Profile</span></a></li>
+                    
+<li><a href="{{ url_for('student.logoutStudent') }}"><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+            </ul>
+
+        </div>
+    </div>
+	 <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars">
+    
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
 <div class="content-section" >
     <div class="content-section-title">
         <div class="products" style="color: white;">
@@ -24,16 +64,30 @@
     </div>
 </div>
 
+<style>
+
+.hd5{
+margin-top:4rem;
+margin-bottom:1rem;
+}
+.tleft{
+float: right;
+}
+
+
+</style>
+
 <div class="card-body">
-    <table width="100%"  style="color: darkgrey;">
-	<h5>Personal Information</h5>
-        <thead class="adobe-product">
+    <table width="100%">
+  
+	<h5 class="hd5">Personal Information</h5>
+        <thead>
             <tr >
 		
                 <td class="products" >
                     Name
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.name}}
                 </td>
 				
@@ -42,7 +96,7 @@
                 <td class="products">
                     Date Of Birth
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.date_of_birth}}
                 </td>
 
@@ -51,7 +105,7 @@
                 <td class="products">
                     Religion
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.religion}}
                 </td>
 
@@ -60,7 +114,7 @@
                 <td class="products">
                     Marital Status
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.marital_status}}
                 </td>
 
@@ -70,7 +124,7 @@
                 <td class="products">
                     Nationality
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.nationality}}
                 </td>
 
@@ -78,7 +132,7 @@
 			
             <tr>
                 <td class="products">State Of Origin</td>
-                <td>
+                <td class="tleft">
                     {{detail.state_of_origin}}
                 </td>
 
@@ -87,7 +141,7 @@
                 <td class="products">
                     Local Government
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.local_government}}
                 </td>
 
@@ -97,7 +151,7 @@
                 <td class="products">
                     Hometown
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.hometown}}
                 </td>
 
@@ -105,12 +159,12 @@
 
         </thead>
 		</table>
-		 <table width="100%"  style="color: darkgrey;">
-		<h5>Academic Information</h5>
+		 <table width="100%"  style="color: darkgrey;"> 
+		<h5 class="hd5">Academic Information</h5>
        <thead class="adobe-product">
 		 <tr>
                 <td class="products">Matriculation Number</td>
-                <td>
+                <td class="tleft">
                     {{detail.matriculation_number}}
                 </td>
 
@@ -120,7 +174,7 @@
                 <td class="products">
                     Registration Number
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.registration_number}}
                 </td>
 
@@ -129,7 +183,7 @@
                 <td class="products">
                     Faculty
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.faculty}}
                 </td>
 
@@ -139,7 +193,7 @@
                 <td class="products">
                     Department
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.department}}
                 </td>
 
@@ -149,7 +203,7 @@
                 <td class="products">
                     Admission Year
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.admission_year}}
                 </td>
 
@@ -159,7 +213,7 @@
                 <td class="products">
                     Programme Type
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.programme_type}}
                 </td>
 
@@ -168,20 +222,20 @@
                 <td class="products">
                     Degree
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.degree}}
                 </td>
             </tr>
 		</thead>
 		</table>
 		 <table width="100%"  style="color: darkgrey;">
-		<h5>Contact Information</h5>
+		<h5 class="hd5">Contact Information</h5>
 		<thead class="adobe-product">
 		<tr >
                 <td class="products">
                     Email <Address></Address>
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.email}}
                 </td>
 
@@ -191,7 +245,7 @@
                 <td class="products">
                     Phone Number
                 </td>
-                <td>
+                <td class="tleft">
                     {{detail.phone_number}}
                 </td>
 
@@ -203,6 +257,6 @@
 
 
 </div>
-
+</div>
 
 {% endblock content %}
