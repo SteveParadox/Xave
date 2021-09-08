@@ -33,6 +33,9 @@ def load_user(user_id):
 class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     portal_toggle = db.Column(db.Boolean, default=False)
+    semester = db.Column(db.Integer, default=1)
+    name = db.Column(db.String(100), nullable=False)
+    week = db.Column(db.String(100), nullable=False)
  
 class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
