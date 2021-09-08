@@ -19,6 +19,12 @@ button {
         cursor: pointer;
 }
 
+
+.xtt{
+	margin-top: 6rem;
+	    margin-left: 3rem;
+}
+
 .sidebar {
     width: 345px;
     position: fixed;
@@ -109,6 +115,31 @@ button {
     transition: margin-left 300ms;
     margin-left: 345px;
 }
+
+ @media screen and (max-width: 415px) {
+	 #nav-toggle:checked + .sidebar {
+    width: 80%;
+}
+#nav-toggle:checked + .sidebar .sidebar-brand,
+#nav-toggle:checked + .sidebar li a  {
+    padding-left: 1rem;
+    text-align: left;
+} 
+#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+#nav-toggle:checked + .sidebar li a span:last-child
+ {
+     display: inline-block;
+
+}
+
+#nav-toggle:checked ~ .main-content header {
+    width: calc(100% - 70px);
+    left: 80%;
+	background: var(--main--color);
+}
+
+
+ }
 
 header {
     background: #fff;
@@ -316,6 +347,11 @@ td .status {
 
 }
 
+h1,h2,h3,h4,h5,h6 {
+	text-decoration: underline;
+}
+
+
 tr td:last-child {
     display: flex;
     align-items: center;
@@ -391,7 +427,6 @@ tr td:last-child {
 .sidebar li a  {
     padding-left: 0rem;
 } 
-
 
 
 .sidebar .sidebar-brand h2 span:last-child,
