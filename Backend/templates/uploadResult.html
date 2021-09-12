@@ -1,24 +1,70 @@
 {% extends "_ext/lecturerLayout.html"%}
 {% block content %}
 
+<input type="checkbox" id="nav-toggle">
+  <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
+
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+	<li> <a href="{{ url_for('lecturer.lecturerdashboard') }}" ><span class="las la-bullseye"></span><span>Dashboard</span></a>
+                    </li>
+                <li>  <a href="{{ url_for('lecturer.bulkStudentMail') }}"><span class="las la-bullseye"></span><span>Mails</span></a>
+                    </li>
+                    <li><a href="{{ url_for('lecturer.departmentHandled') }}" class="active"><span class="las la-history"></span><span>Session</span></a></li>
+                    <li><a href="{{ url_for('student.feeStatus') }}"><span class="las la-users"></span><span>Send Materials</span></a>
+                </li>
+<li> <a href="{{ url_for('lecturer.logoutLecturer') }}"><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+	 <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars">
+    
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
+           <main>
+		   
+		   <style>
+		   input{
+		   margin-bottom: 1rem;
+		   }
+		   </style>
  <form method="POST" action="">
                     {{ form.hidden_tag() }}
                     <fieldset style="border: none;">
-                       
-                                        {{form.semester.label()}}
-                                    
+                                   
                                         {{form.semester()}}
-										
-										
-										
-										
-										
+<br><br><br><br>
 										{% for i in courses%}
-										<br>
 										{{i.name}}
-										
-                                        {{form.grade.label()}}
-                                    
+
                                         {{form.grade()}}
                                     {% endfor %}
 										
@@ -26,5 +72,5 @@
 </fieldset>
 {{form.submit}}
 </form>
-
+</main>
 {% endblock content %}

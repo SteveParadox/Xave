@@ -1,7 +1,7 @@
 {% extends "_ext/adminLayout.html"%}
 {% block content %}
 <input type="checkbox" id="nav-toggle">
-<div class="sidebar">
+       <div class="sidebar">
         <div class="sidebar-brand">
             <h2>
                 <span class="lab la-accusoft"></span>
@@ -17,13 +17,13 @@
                 </li>
                 <li><a href="{{ url_for('admin.studentDetail') }}"><span class="las la-users"></span><span>Student Management</span></a>
                 </li>
-                <li><a href="{{ url_for('admin.lecturerDashboard') }}" class="active"><span class="las la-users"></span><span>Lecturer Management</span></a>
+                <li><a href="{{ url_for('admin.lecturerDashboard') }}"><span class="las la-users"></span><span>Lecturer Management</span></a>
                 </li>
                 
                     <li><a href="{{ url_for('admin.bulkMail') }}"><span class="las la-clone"></span><span>Bulk Mail</span></a>
                 </li>
 
-                <li><a href="{{ url_for('admin.adminControl') }}"><span class="las la-bullseye"></span><span>Administration Control</span></a>
+                <li><a href="{{ url_for('admin.adminControl') }}" class="active"><span class="las la-bullseye"></span><span>Administration Control</span></a>
                     </li>
                     <li><a href="{{ url_for('admin.log') }}"><span class="las la-history"></span><span>Activities Log</span></a></li>
                     <li><a href="{{ url_for('admin.logoutAdmin') }}"><span class="las la-route"></span><span>Logout</span></a>
@@ -34,7 +34,7 @@
         </div>
     </div>
 	<div class="main-content">
-        <header>
+       <header>
             <h2>
                 <label for="nav-toggle">
                     <span class="las la-bars">
@@ -53,6 +53,7 @@
                 </div>
             </div>
         </header>
+           <main>
 	  <div class="card-body">
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
@@ -69,16 +70,25 @@
 
 
                                 </tr>
+								<tr>
+                                    <td>
+                                        Week
+                                    </td>
+                                    <td>
+                                        {{form.week()}}
+                                    </td>
+
+
+                                </tr>
 
                             </thead>
-							<td></td>
-
-                    <td>{{form.submit(class="vas")}}</td>
-
+						
                     </tbody>
 
                     </table>
-
+</fieldset>
+{{form.submit(class="vas")}}
                 </form>
             </div> </div>
+			</main>
 	{% endblock content%}

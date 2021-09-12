@@ -108,7 +108,11 @@
                
                 <div class="card-single">
                     <div>
-                        <h1>1st</h1>
+					{% if semester.semester == 1 %}
+                        <h1>{{semester.semester}}st</h1>
+						{% else%}
+                        <h1>{{semester.semester}}nd</h1>
+						{% endif %}
                         <span>Semester</span>
                     </div>
                     <div>
@@ -120,7 +124,7 @@
 
                 <div class="card-single">
                     <div>
-                        <h1>Week 25</h1>
+                        <h1>Week {{week.week}}</h1>
                         <span>Session Calender</span>
                     </div>
                     <div>

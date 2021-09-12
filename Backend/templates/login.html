@@ -1,6 +1,6 @@
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
-<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/logint.css') }}">
+<script src="https://use.fontawesome.com/249f11a143.js"></script>
 <section>
   
   <div class="box">
@@ -19,20 +19,21 @@
         {{ form.hidden_tag() }}
         <fieldset style="border: none;">
         <div class="inputBx">
+		 
           {{form.email()}}
-          <span>{{ form.email.label() }}</span>
-          <img src="https://www.flaticon.com/svg/static/icons/svg/709/709699.svg" alt="user">
+          <span class="labelx">{{ form.email.label(style="color: white;") }} <i style="color: white;" class="fa fa-user"></i></span>
+      
         </div>
         <div class="inputBx">
           {{form.matriculation_number()}}
-          <span>{{ form.matriculation_number.label() }}</span>
-          <img src="https://www.flaticon.com/svg/static/icons/svg/709/709699.svg" alt="user">
+          <span class="labelx">{{ form.matriculation_number.label(style="color: white;") }} <i style="color: white;" class="fa fa-vcard-o"></i></span>
+         
         </div>
         <div class="inputBx password">
           {{ form.password(id="password-input") }}
-          <span>{{ form.password.label() }}</span>
+          <span class="labelx">{{ form.password.label(style="color: white;") }} <i style="color: white;" class="fa fa-lock"></i></span>
           <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
-          <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828471.svg" alt="lock">
+         
         </div>
         <label class="remember">
           {{ form.remember() }}
@@ -44,7 +45,7 @@
         </div>
       </form>
       
-	  <p><a href="{{ url_for('lecturer.lecturerloginPortal') }}">
+	  <p style="padding-left: 4rem;"><a href="{{ url_for('lecturer.lecturerloginPortal') }}">
 	  Login as lecturer
 	  </a></p>
     </div>

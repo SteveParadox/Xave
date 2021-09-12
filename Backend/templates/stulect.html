@@ -1,19 +1,17 @@
 {% extends '_ext/lecturerLayout.html' %}
 {% block content %}
-
-
-<div class="main-header">
-    
-    <div class="header-menu">
-        <a class="main-header-link " href="{{ url_for('lecturer.lecturerMail') }}">My Mails</a>
-        <a class="main-header-link is-active" href="{{ url_for('lecturer.bulkStudentMail') }}">Send Mail To Students</a>
-        
-
-    </div>
-    
-</div>
-
 <style>
+
+
+.card-single{
+margin-bottom: .7rem;
+padding: 1rem;
+}
+
+.recent-grid {
+    margin-top: 1.5rem;
+	}
+	
     input {
         width: 100%;
         outline: none;
@@ -23,7 +21,7 @@
         padding: 8px 10px;
         padding-left: 40px;
         border-radius: 15px;
-        color: #fff;
+        color: #000;
         font-size: 16px;
         box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
 
@@ -38,14 +36,76 @@
         padding: 8px 10px;
         padding-left: 40px;
         border-radius: 15px;
-        color: #fff;
+        color: #000;
         font-size: 16px;
         box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
 
     }
 </style>
-<div>
+
+<input type="checkbox" id="nav-toggle">
+  <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>
+                <span class="lab la-accusoft"></span>
+
+                <span>
+                        XAVE
+                </span>
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+<li> <a href="{{ url_for('lecturer.lecturerdashboard') }}"  ><span class="las la-bullseye"></span><span>Dashboard</span></a>
+                    </li>
+                <li>  <a href="{{ url_for('lecturer.bulkStudentMail') }}" class="active"><span class="las la-bullseye"></span><span>Mails</span></a>
+                    </li>
+                    <li><a href="{{ url_for('lecturer.departmentHandled') }}" ><span class="las la-history"></span><span>Session</span></a></li>
+                    <li><a href="{{ url_for('student.feeStatus') }}"><span class="las la-users"></span><span>Send Materials</span></a>
+                </li>
+<li> <a href="{{ url_for('lecturer.logoutLecturer') }}"><span class="las la-route"></span><span>Logout</span></a>
+                    </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+	 <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars">
+    
+                    </span>
+                </label>
+                
+            </h2>
+         
+    
+            <div class="user-wrapper">
+                <img src="" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{current_user.name}}</h4>
+                    <small>{{current_user.position}}</small>
+                </div>
+            </div>
+        </header>
+		
+		<main>
+
+<div class="main-header">
+
+    <div class="header-menu">
+        <a class=" active card-single"  href="{{ url_for('lecturer.lecturerMail') }}">My Mails</a>
+        <a class=" card-single" href="{{ url_for('lecturer.bulkStudentMail') }}">Send Mail To Students</a>
+
+    </div>
+    
 </div>
+
+
+
    <div class="content-wrapper">
       <div class="card-body">
                 <form method="POST" action="">
@@ -89,5 +149,5 @@
     
      </div>
      
-    
+    </main>
 {% endblock content %}

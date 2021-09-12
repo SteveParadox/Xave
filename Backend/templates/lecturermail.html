@@ -3,41 +3,6 @@
 
 
 
-<style>
-
-.form__label {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
-  margin-left: 2rem;
-  margin-top: 0.7rem;
-  display: block;
-  transition: all 0.3s;
-  transform: translateY(0rem);
-}
-
-.form__input {
-  font-family: 'Roboto', sans-serif;
-  color: #333;
-  font-size: 1.2rem;
-	margin: 0 auto;
-  padding: 1.5rem 2rem;
-  border-radius: 0.2rem;
-  background-color: rgb(255, 255, 255);
-  border: none;
-  width: 90%;
-  display: block;
-  border-bottom: 0.3rem solid transparent;
-  transition: all 0.3s;
-}
-
-.form__input:placeholder-shown + .form__label {
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transform: translateY(-4rem);
-  transform: translateY(-4rem);
-}
-
-</style>
 <input type="checkbox" id="nav-toggle">
 <div class="sidebar">
         <div class="sidebar-brand">
@@ -71,7 +36,6 @@
 
         </div>
     </div>
-	
 <div class="main-content">
         <header>
             <h2>
@@ -92,39 +56,59 @@
                 </div>
             </div>
         </header>
-<div class="recent-grid">
-    <div class="projects">
-        <div class="card" style=" margin-top: 1rem;">
+
+<main>
+        <div style=" margin-top: 1rem;">
             <div class="card-header">
                 <h3>
-                    Lecturers Mail
+                    Lecturer Mail
                 </h3>
 
 
             </div>
-
-                     <div class="card-body">
+ <div class="content-wrapper">
+            <div class="card-body">
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
                     <fieldset style="border: none;">
-                        <div class="form__group">
-  {{form.title.label(class="form__label")}}
-  {{ form.title(class="form__input", placeholder="Title")}}
-</div>
+                       <table width="100%">
+                            <thead>
+                                <tr >
+                                    <td>
+                                        {{form.title.label()}}
+                                    </td>
+                                    <td>
+                                        {{form.title(style="    margin-top: 1rem;")}}
+                                    </td>
 
-<div class="form__group">
-  {{form.mail.label(class="form__label")}}
-  {{ form.mail(class="form__input", placeholder="Mail")}}
-</div>
+
+                                </tr>
+
+                            
+                            
+                                <tr>
+                                    <td>
+                                        {{form.mail.label()}}
+                                    </td>
+                                    <td>
+                                        {{form.mail()}}
+                                    </td>
+
+                                </tr>
+
+                               
+   </thead>
+</table>
+
 </fieldset>
-<button>{{form.submit}}</button>
+{{form.submit()}}
 </form>
 </div>
 </div>
 </div>
-</div></div>
+</div></div></div>
 
 
-
+</main>
 
 {% endblock content %}
