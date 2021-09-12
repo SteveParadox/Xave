@@ -19,6 +19,10 @@ button {
         cursor: pointer;
 }
 
+.projects{
+	padding-left: 1.5rem;
+	
+}
 
 .xtt{
 	margin-top: 6rem;
@@ -485,6 +489,43 @@ tr td:last-child {
 }
 
 
+
 input {
-	width: 100%;
+        width: 100%;
+        outline: none;
+        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 10px;
+        padding-left: 40px;
+        border-radius: 15px;
+        color: #000;
+        font-size: 16px;
+        box-shadow: 2px 1px;
+
+    }
+	
+	textarea {
+        width: 100%;
+        outline: none;
+        border: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 10px;
+        padding-left: 40px;
+        border-radius: 15px;
+        color: #000;
+        font-size: 16px;
+        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+
+    }
+	
+	
+	@media only screen and (max-width: 560px) {
+    input {
+          width: 95%;
+    }
+
 }
+
+  
