@@ -66,8 +66,9 @@ def lecturerMail():
 @login_required
 @lectureR
 def lecturerdashboard():
-    #detail = Student.query.filter_by(unique_id=unique_id).first()
-    return render_template('lecturerDashboard.html')
+    semester = School.query.filter_by(name="semester").first()
+    week = School.query.filter_by(name="week").first()
+    return render_template('lecturerDashboard.html',semester=semester, week=week)
 
 
 @lecturer.route('/leturer/student/message', methods=['GET','POST'])
@@ -77,9 +78,7 @@ def bulkStudentMail():
     dept =Department.query.filter_by(name=current_user.department).first()
     form = MailForm()
     if form.validate_on_submit():
-        print(form.levels.data)
         #student = Student.query.filter_by(department=current_user.department).filter_by(level=int(form.levels.data)).first()
-        
         message = Message()
         message.title = form.title.data
         message.mail = form.mail.data

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextAreaField, IntegerField, StringField, PasswordField, SubmitField, BooleanField
+from wtforms import SubmitField, TextAreaField, IntegerField, StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class StudentRegistrationForm(FlaskForm):    
@@ -74,10 +74,10 @@ class LoginLecturerForm(FlaskForm):
 
 class UpdateDetailForm(FlaskForm):
     address1 = StringField('Address')
-    marital_status = StringField('Marital Status')
+    marital_status = SelectField('Marital Status', choices= [("Single","Single"),("Married", 'Married'), ("Complicated", "Its Complicated")], validators=[DataRequired()])
     email = StringField('Email Address')
     phone_number = StringField('Phone Number')
-    religion = StringField('Religion')
+    religion = SelectField('Religion ', choices= [("Christianity","Christianity"),("Muslim", 'Musilm'), ("Others", "Others")], validators=[DataRequired()])
     submit = SubmitField('Update Info')
 
 

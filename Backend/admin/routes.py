@@ -48,7 +48,7 @@ def searchLecturer():
 @login_required
 @admiN
 def allAdmin():
-    admin = Admin.query.all()
+    admin = Admin.query.filter(Admin.name!=current_user.name).all()
     hashed_password = bcrypt.generate_password_hash('stephen').decode('utf-8')
     print(hashed_password)
     return render_template('admin.html', admin=admin)
@@ -58,7 +58,7 @@ def allAdmin():
 @login_required
 @admiN
 def AdminDashboard():
-    admin = Admin.query.all()
+    admin = Admin.query.filter(Admin.name!=current_user.name).all()
     student = Student.query.all()
     length= len(student)
     lecturer = Lecturer.query.all()
@@ -67,7 +67,9 @@ def AdminDashboard():
     lengthFaculty= len(faculty)
     department = Department.query.all()
     lengthDepartment= len(department)
-    return render_template("adminDashboard.html", lengthDepartment=length, lengthFaculty=lengthFaculty, admin=admin, length=length, lengthLecturer=lengthLecturer)
+    semester = School.query.filter_by(name="semester").first()
+    week = School.query.filter_by(name="week").first()
+    return render_template("adminDashboard.html", lengthDepartment=length, lengthFaculty=lengthFaculty, admin=admin, length=length, lengthLecturer=lengthLecturer, semester=semester, week=week)
 
 @admin.route('/login/admin', methods=['GET', 'POST'])
 def loginAdmin():
@@ -208,8 +210,63 @@ def studentDetail():
 @login_required
 @admiN
 def adminControl():
-
+    
     return render_template('adminControl.html')
+
+
+@admin.route('/admin/detail/<string:name>', methods=['GET'])
+@login_required
+@admiN
+def adminDetail(name):
+    admin = Admin.query.filter_by(name=name).first()
+    return render_template('admindetail.html', detail=admin)
+
+
+@admin.route("/delete/admin/<string:unique_id>", methods=['GET','POST'])
+@login_required
+@admiN
+#@check_confirmed
+def deleteAdmin(unique_id):
+    admin = Admin.query.filter_by(unique_id=unique_id).first()
+    if admin.name == current_user.name:
+        abort(403)    
+    db.session.delete(admin)
+    db.session.commit()
+    return redirect(url_for('admin.AdminDashboard'))
+
+@admin.route('/admin/timetable', methods=['GET', 'POST'])
+@login_required
+@admiN
+def adminTimetable():
+    form = SemesterForm()
+    
+    if form.is_submitted():
+        if form.semester.data != None:
+            school = School.query.filter_by(name="semester").first()
+            if not school:
+                school = School()
+                school.semester = form.semester.data
+                school.name="semester"
+                db.session.add(school)
+                db.session.commit()
+            else:
+                school.semester = form.semester.data
+                db.session.commit()
+        if form.week.data != None:
+            print(form.week.data)
+            school = School.query.filter_by(name="week").first()
+            if not school:
+                school = School()
+               
+                school.week = form.week.data
+                school.name="week"
+                db.session.add(school)
+                db.session.commit()
+            else:
+                school.week = form.week.data
+                db.session.commit()
+
+    return render_template('timetable.html', form=form)
 
 @admin.route("/delete/student/<string:unique_id>", methods=['GET','POST'])
 @login_required

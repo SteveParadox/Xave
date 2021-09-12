@@ -90,7 +90,7 @@ def _():
 @login_required
 @studenT
 def studentMail():
-    message = Message.query.all()
+    message = Message.query.order_by(Message.created_on.desc()).all()
     return render_template('message.html', message=message)
 
 @student.route('/student/mail/<int:msg_id>')
@@ -138,7 +138,9 @@ def bioData():
 @studenT
 def dashboard():
     #detail = Student.query.filter_by(unique_id=unique_id).first()
-    return render_template('dashboard.html')
+    semester = School.query.filter_by(name="semester").first()
+    week = School.query.filter_by(name="week").first()
+    return render_template('dashboard.html',semester=semester, week=week)
 
 
 @student.route('/student/fees')
@@ -146,6 +148,7 @@ def dashboard():
 @studenT
 def feeStatus():
     #detail = Student.query.filter_by(unique_id=unique_id).first()
+    portal = School.query.filter_by(id=1).first()
     return render_template('fees.html')
 
 
