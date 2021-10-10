@@ -77,7 +77,7 @@ def loginAdmin():
     if form.validate_on_submit():
         admin = Admin.query.filter_by(email=form.email.data).first()
         if admin and bcrypt.check_password_hash(admin.password, form.password.data):
-            login_user(admin, remember=True)
+            login_user(admin, remember=form.remember.data)
             next_page = request.args.get('next')
             session['account_type'] = 'Admin'
            
@@ -253,7 +253,7 @@ def adminTimetable():
                 school.semester = form.semester.data
                 db.session.commit()
         if form.week.data != None:
-            print(form.week.data)
+            print(form.week.data)	
             school = School.query.filter_by(name="week").first()
             if not school:
                 school = School()
