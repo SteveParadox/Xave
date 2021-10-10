@@ -154,6 +154,7 @@ class LoginAdminForm(FlaskForm):
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password',
                              validators=[DataRequired()])
+    remember = BooleanField('Remeber Me')
     submit = SubmitField('Login')
 
 class StudentPasswordForm(FlaskForm):
