@@ -20,13 +20,13 @@ jobs:
       - name: Build Docker Image
         run: |
           IMAGE_TAG=1692524251
-          IMAGE_NAME=XaveDb
+          IMAGE_NAME=xavedb
           DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
           docker build . --file Dockerfile --tag $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
 
       - name: Push Docker Image
         run: |
           IMAGE_TAG=1692524251
-          IMAGE_NAME=XaveDb
+          IMAGE_NAME=xavedb
           DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
           docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
