@@ -37,3 +37,4 @@ six==1.11.0
 flask_profiler==1.8.1
 psycopg2==2.9.1
 python-dotenv==1.0.0
+flask-migrate
