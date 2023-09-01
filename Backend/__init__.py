@@ -29,7 +29,7 @@ app.config['flask_profiler']={
 
 
 bcrypt= Bcrypt()
-jwt= JWTManager()
+#jwt= JWTManager()
 mail = Mail()
 ma = Marshmallow()
 db = SQLAlchemy()
@@ -48,7 +48,7 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     ma.init_app(app)
     mail.init_app(app)
-    jwt.init_app(app)
+    #jwt.init_app(app)
     login_manager.init_app(app)
 
 
