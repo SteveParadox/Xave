@@ -8,6 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 from Backend.config import Config
 from flask_profiler import Profiler
 from flask_login import LoginManager
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app= Flask(__name__)
 app.config.from_object(Config)

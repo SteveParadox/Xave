@@ -1,111 +1,27 @@
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class Config:
-    def __init__(self):
-        pass
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    ENV = 'prod'
 
-    ENV = 'dev'
+    if ENV == 'dev':
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    else:
+        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
-    
-    if os.path.exists('config.env'):
-        print('Importing environment from .env file')
-        for line in open('config.env'):
-            var = line.strip().split('=')
-            if len(var) == 2:
-                os.environ[var[0]] = var[1].replace("\"", "")
-                if ENV == 'dev':
-                    if "SECRET_KEY" in var:
-                            SECRET_KEY=var[1]
-                    else:
-                        pass
-                    if "JWT_SECRET_KEY" in var:
-                        JWT_SECRET_KEY=var[1]
-                    else:
-                        pass
-                    if "SQLALCHEMY_DATABASE_URI" in var:
-                        SQLALCHEMY_DATABASE_URI=var[1]
-                    else:
-                        pass
-                    if "MAIL_SERVER" in var:
-                        MAIL_SERVER=var[1]
-                    else:
-                        pass
-                    if "MAIL_PORT" in var:
-                        MAIL_PORT=var[1]
-                    else:
-                        pass
-                    if "MAIL_USE_TLS" in var:
-                        MAIL_USE_TLS=var[1]
-                    else:
-                        pass
-                    if "MAIL_USE_SSL" in var:
-                        MAIL_USE_SSL=var[1]
-                    else:
-                        pass
-                    if "MAIL_USERNAME" in var:
-                        MAIL_USERNAME=var[1]
-                    else:
-                        pass
-                    if "MAIL_PASSWORD" in var:
-                        MAIL_PASSWORD=var[1]
-                    else:
-                        pass
-                    if "MAIL_DEFAULT_SENDER" in var:
-                        MAIL_DEFAULT_SENDER=var[1]
-                    else:
-                        pass
-                    if "MAIL_USE_SSL" in var:
-                        MAIL_USE_SSL=var[1]
-                    else:
-                        pass
-                    SQLALCHEMY_TRACK_MODIFICATIONS = False
-                    CORS_HEADERS = 'Content-Type'
-                    JWT_BLACKLIST_ENABLED=True
-                    JWT_BLACKLIST_TOKEN_CHECKS=['access', 'refresh']
-                    SECURITY_PASSWORD_SALT = 'my_precious_two'
-                else:        
-                    if "PROD_SECRET_KEY" in var:
-                        SECRET_KEY=var[1]
-                    else:
-                        pass
-                    if "MAIL_SERVER" in var:
-                        MAIL_SERVER=var[1]
-                    else:
-                        pass
-                    if "MAIL_PORT" in var:
-                        MAIL_PORT=var[1]
-                    else:
-                        pass
-                    if "MAIL_USE_TLS" in var:
-                        MAIL_USE_TLS=var[1]
-                    else:
-                        pass
-                    if "MAIL_USE_SSL" in var:
-                        MAIL_USE_SSL=var[1]
-                    else:
-                        pass
-                    if "MAIL_USERNAME" in var:
-                        MAIL_USERNAME=var[1]
-                    else:
-                        pass
-                    if "MAIL_PASSWORD" in var:
-                        MAIL_PASSWORD=var[1]
-                    else:
-                        pass
-                    if "MAIL_DEFAULT_SENDER" in var:
-                        MAIL_DEFAULT_SENDER=var[1]
-                    else:
-                        pass
-                    if "MAIL_USE_SSL" in var:
-                        MAIL_USE_SSL=var[1]
-                    else:
-                        pass
-                    if "API_KEY" in var:
-                        API_KEY=var[1]
-                    else:
-                        pass
-                    SQLALCHEMY_TRACK_MODIFICATIONS = False
-                    SQLALCHEMY_DATABASE_URI = "postgres://xtxivwdedrdqiq:dca0e349351bad9191732318455e178bd99eec6326c351c09a4d70b475833b32@ec2-174-129-32-240.compute-1.amazonaws.com:5432/dagkfphn1hgj9d"
-        #CORS_HEADERS = 'Access-Control-Allow-Origin'
-
+    SECURITY_PASSWORD_SALT =  os.environ.get('SECURITY_PASSWORD_SALT')
+    MAIL_SERVER =  os.environ.get('MAIL_SERVER')
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    MAIL_USERNAME =  os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD =  os.environ.get('MAIL_PASSWORD')
+    MAIL_DEFAULT_SENDER = 'from@example.com'
+    SQLALCHEMY_POOL_SIZE = 100
+    SQLALCHEMY_POOL_TIMEOUT = 3000
+    SQLALCHEMY_POOL_RECYCLE = 3600 
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SESSION_TYPE = 'filesystem'

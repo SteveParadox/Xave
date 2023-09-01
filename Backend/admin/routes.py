@@ -1,7 +1,7 @@
 from flask import *
 from Backend.models import *
 import uuid 
-from Backend import db, bcrypt
+from Backend import db, bcrypt, app
 from flask_login import login_required, current_user, login_user,logout_user, decode_cookie
 from Backend.config import Config
 from flask_cors import cross_origin
@@ -590,3 +590,8 @@ def addCourse():
             return jsonify({"message":"course added"})
     return render_template('addcourse.html', form=form)
 
+@admin.route('/create_tables')
+def create_tables():
+    with app.app_context():
+        db.create_all()
+    return 'Database tables created successfully'
